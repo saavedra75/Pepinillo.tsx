@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Character } from "../types";
+
+export default function CharacterCard(){
 const[crews, setCrews]=useState<Character[]>([]); //Estado para almacenar los posts
 
   useEffect(()=>{
@@ -13,11 +15,16 @@ const[crews, setCrews]=useState<Character[]>([]); //Estado para almacenar los po
       console.error("Error fetching posts:",error);
     });
   },[]); //[] asegura que solo se ejecute una vez(al montar el componente)
- {crews.map(crew=>(
-              <li key={crew.id}>
-                <img src={crew.image} alt={crew.name}/>
-                <h3>{crew.name}</h3>
-                <p>{crew.species}</p>
-                <small>{crew.status}</small>
-                 </li>
+  return(
+    <div>
+         {crews.map(crew=>(
+         <div className="crew-card"key={crew.id}>
+         <img src={crew.image} alt={crew.name}/>
+         <h3>{crew.name}</h3>
+         <p>{crew.species}</p>
+         <small>{crew.status}</small>                
+         </div>
             ))}
+    </div>
+        )
+    }

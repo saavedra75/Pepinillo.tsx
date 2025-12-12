@@ -1,0 +1,12 @@
+.crew-card{
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  background: #fff;
+}
+
+.crew-card img {
+  width: 100%;
+  border-radius: 8px;
+}
