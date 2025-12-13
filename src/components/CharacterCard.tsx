@@ -1,9 +1,9 @@
-import type { Character } from "../types";
+import type { ICharacter } from "../types";
 import "./CharacterCard.css"
 
 interface Props{
-  crew: Character;
-  onHire: (id:number)=>void;
+  crew: ICharacter;
+  onHire: (ICharacter: ICharacter)=>void;
 }
 
 export default function CharacterCard({crew, onHire}:Props){  
@@ -17,7 +17,7 @@ export default function CharacterCard({crew, onHire}:Props){
       <div className="card-action">
         <button
         className="btn-action btn-feed" 
-        onClick={()=>onHire(crew.id)}
+        onClick={()=>onHire(crew)}
           disabled={crew.status==="Dead"||crew.status==="unknown"}
           >Contratar</button>
         </div>                         

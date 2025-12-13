@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState, useContext } from "react";
 import CharacterCards from "../components/CharacterCard";
-import type { Character } from "../types";
+import {ShipContext} from "../context/ShipContext"
+import type { ICharacter } from "../types";
 import "./HireCrew.css"
+import { useShip } from "../hooks/useShip";
 
 export default function HireCrew(){
 
-const[crews, setCrews]=useState<Character[]>([]); //Estado para almacenar los posts
+const[crews, setCrews]=useState<ICharacter[]>([]); //Estado para almacenar los posts
 const [searchCrew, setSearchCrew]=useState(""); //Estado para las busquedas
+const {credits, crew, addCrewMember, spendCredits} = useShip();
 
   useEffect(()=>{
     //Realizo la petición a la API
@@ -25,8 +28,13 @@ const [searchCrew, setSearchCrew]=useState(""); //Estado para las busquedas
   crews.name.toLowerCase().includes(searchCrew.toLocaleLowerCase())
   );
 
-  function addCrew(id: number){
-    //Conexión de Shipcontexts
+  function addCrew(candidate: ICharacter){
+  
+   if (crew.length < 4 && credits >= 200) {
+    spendCredits(200);
+    addCrewMember(candidate);
+  }
+
 
   }
     return (
@@ -39,8 +47,8 @@ const [searchCrew, setSearchCrew]=useState(""); //Estado para las busquedas
           onChange={(e)=>setSearchCrew(e.target.value)}
           />
           <div className="crew-grid">
-          {filteredCrews.map((crew)=>(
-            <CharacterCards key={crew.id} crew={crew} onHire={addCrew}/>
+          {filteredCrews.map((candidate)=>(
+            <CharacterCards key={candidate.id} crew={candidate} onHire={addCrew}/>
           ))}
          
         </div>
