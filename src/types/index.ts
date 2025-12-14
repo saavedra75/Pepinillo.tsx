@@ -25,3 +25,7 @@ export interface IShipContext {
   refuel: (amount: number) => void;
   reduceFuel: (amount: number) => void;
 }
+
+export interface ICharacterResponse {
+  results: ICharacter[];
+}
