@@ -1,0 +1,43 @@
+.crew-card{
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.crew-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+.crew-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border-color: var(--primary-color);
+}
+/* Botones de acción */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btn-feed {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.btn-feed:hover { background-color: #b7e4c7; 
+}
+.btn-feed:disabled{
+  background-color: #ccc;   /* gris neutro */
+  color: #666;              /* texto apagado */
+  cursor: not-allowed;      /* icono de prohibido */
+  opacity: 0.7;             /* efecto visual */
+}
+.btn-feed:disabled:hover {
+  background-color: #ccc;   /* evita que cambie al hover */
+}
+
+
