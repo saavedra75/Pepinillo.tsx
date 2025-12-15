@@ -29,3 +29,7 @@ export interface IShipContext {
 export interface ICharacterResponse {
   results: ICharacter[];
 }
+
+export interface ILocationResponse {
+  results: ILocation[];
+}

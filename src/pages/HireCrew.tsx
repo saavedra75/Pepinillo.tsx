@@ -1,9 +1,10 @@
 import {useEffect, useState, useContext } from "react";
 import CharacterCards from "../components/CharacterCard";
 import {ShipContext} from "../context/ShipContext"
-import type { ICharacter } from "../types";
+import type { ICharacter, ICharacterResponse } from "../types";
 import "./HireCrew.css"
 import { useShip } from "../hooks/useShip";
+import { getCharacters } from "../services/rickAndMortyService";
 
 export default function HireCrew(){
 
@@ -12,15 +13,13 @@ const [searchCrew, setSearchCrew]=useState(""); //Estado para las busquedas
 const {credits, crew, addCrewMember, spendCredits} = useShip();
 
   useEffect(()=>{
-    //Realizo la petición a la API
-    fetch("https://rickandmortyapi.com/api/character")
-    .then(response=>response.json())
-    .then(data=>{
-      setCrews(data.results); //Guardo los dados en el estado
+    getCharacters()
+    .then(data => {
+      setCrews(data.results);
     })
-    .catch(error=>{
-      console.error("Error fetching posts:",error);
-    });
+    .catch(error => {
+      throw new Error("Error al cargar los personajes");
+    })
   },[]); //[] asegura que solo se ejecute una vez(al montar el componente)
 
 
