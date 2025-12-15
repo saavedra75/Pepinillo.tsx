@@ -9,7 +9,7 @@ const Navbar = () => {
           🚀 COSMIC CARGO
         </div>
 
-        <div className="nav-links">
+        <div className="nav-links"> 
           <NavLink to="/" className="nav-link">
             Dashboard
           </NavLink>
