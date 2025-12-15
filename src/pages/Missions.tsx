@@ -27,6 +27,8 @@ const {credits, crew, fuel, reduceFuel, spendCredits} = useShip();
     } else {
       let result: string = generateResult();
     }
+
+    
   }
 
 
