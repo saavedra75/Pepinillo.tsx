@@ -1,0 +1,158 @@
+/* ======== CONTENEDOR PRINCIPAL ======== */
+.container {
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #02041a, #000);
+  font-family: "Orbitron", sans-serif;
+  color: #c9faff;
+}
+
+/* ======== PANEL BASE ======== */
+.panel {
+  width: 40%;
+  min-width: 320px;
+  background: rgba(0, 20, 60, 0.85);
+  border: 3px solid rgba(0, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.4);
+}
+
+.panel h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: cyan;
+  letter-spacing: 2px;
+}
+
+/* ======== ESTADÍSTICAS ======== */
+.stat {
+  font-size: 1.4rem;
+  margin: 12px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat span {
+  font-weight: bold;
+}
+
+.fuel-high {
+  color: #00ff00; /* Verde */
+  font-weight: bold;
+}
+
+.fuel-medium {
+  color: #ff9900; /* Amarillo */
+  font-weight: bold;
+}
+
+.fuel-low {
+  color: #ff0000; /* Rojo anaranjado */
+  font-weight: bold;
+}
+
+/* ======== ALERTA ======== */
+.alert {
+  width: 500px;
+  background: rgba(255, 0, 50, 0.9);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 0 25px red;
+  border: 3px solid #ff4d6d;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 20px red; }
+  50% { box-shadow: 0 0 35px red; }
+  100% { box-shadow: 0 0 20px red; }
+}
+
+/* ======== TRIPULACIÓN ======== */
+.crewList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+.crewMember {
+  width: 160px;
+  padding: 15px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crewMember:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.crewMember img {
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 3px solid cyan;
+}
+
+.crewMember span {
+  margin-top: 10px;
+  display: block;
+  font-size: 1.1rem;
+}
+
+/* ======== MENSAJE VACÍO ======== */
+.empty {
+  text-align: center;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 900px) {
+  .panel {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .stat {
+    font-size: 1.2rem;
+  }
+
+  .crewMember {
+    width: 130px;
+  }
+
+  .crewMember img {
+    width: 110px;
+    height: 110px;
+  }
+}
