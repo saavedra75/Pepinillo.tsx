@@ -24,4 +24,5 @@ export interface IShipContext {
   spendCredits: (amount: number) => void;
   refuel: (amount: number) => void;
   reduceFuel: (amount: number) => void;
+  clearCrew: () => void;
 }

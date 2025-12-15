@@ -17,6 +17,16 @@ export const localStorageService = {
             crew
         }
         localStorage.setItem('shipData', JSON.stringify(data));
+    },
+
+    clearCrew: () => {
+        const data = localStorage.getItem('shipData');
+        if (!data) return;
+
+        const parsed = JSON.parse(data);
+        parsed.crew = [];
+
+        localStorage.setItem('shipData', JSON.stringify(parsed));
     }
 
 }

@@ -2,7 +2,7 @@ import { useShip } from "../hooks/useShip";
 import "../styles/Dashboard.css";
 
 export default function Dashboard(){
-    const { credits, fuel, crew } = useShip();
+    const { credits, fuel, crew, clearCrew } = useShip();
     
     return (
       <div className="container">
@@ -35,7 +35,10 @@ export default function Dashboard(){
               ))}
             </ul>
           )}
+          <button className="deleteCrewBtn" onClick={clearCrew}>
+            Clear Crew
+          </button>
         </div>
       </div>
     );
-} 
+}

@@ -70,6 +70,11 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
         });
     }
 
+    // Funcion para limpiar la tripulacion
+    function clearCrew(): void {
+        setCrew([]); 
+    }
+
 
     return (    
         <ShipContext.Provider value={{
@@ -79,7 +84,8 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
             addCrewMember,
             spendCredits,
             refuel,
-            reduceFuel
+            reduceFuel,
+            clearCrew
         }}>
             {children}
         </ShipContext.Provider>

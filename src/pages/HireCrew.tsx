@@ -43,6 +43,7 @@ const {credits, crew, addCrewMember, spendCredits} = useShip();
         <>
           <h2>HireCrew</h2>
           <input 
+          className="searchInput"
           type="text"  
           placeholder="Buscar tripulante..."
           value={searchCrew}
