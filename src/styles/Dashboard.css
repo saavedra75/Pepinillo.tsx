@@ -5,8 +5,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  min-height: 100vh;
-  background: radial-gradient(circle at center, #02041a, #000);
+  height: 100%;
+  max-height: 100vh;
+  background-color: rgb(25, 25, 87);
   font-family: "Orbitron", sans-serif;
   color: #c9faff;
 }
@@ -14,9 +15,9 @@
 /* ======== PANEL BASE ======== */
 .panel {
   width: 40%;
+  height: 30%;
   min-width: 320px;
-  background: rgba(0, 20, 60, 0.85);
-  border: 3px solid rgba(0, 255, 255, 0.5);
+  background: rgba(10, 15, 30, 0.6);  
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
@@ -25,7 +26,7 @@
 }
 
 .panel:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: 0 0 35px rgba(0, 255, 255, 0.4);
 }
 
@@ -42,11 +43,15 @@
   font-size: 1.4rem;
   margin: 12px 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
 }
 
 .stat span {
   font-weight: bold;
+  font-size: 60px;
+  margin-bottom: 40px;
 }
 
 .fuel-high {
@@ -66,7 +71,7 @@
 
 /* ======== ALERTA ======== */
 .alert {
-  width: 500px;
+  width: 82%;
   background: rgba(255, 0, 50, 0.9);
   color: white;
   padding: 20px;
@@ -85,18 +90,29 @@
 }
 
 /* ======== TRIPULACIÓN ======== */
-.crewList {
+
+.crewContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.crewList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-template-rows: repeat(2, auto);
   gap: 20px;
-  justify-content: center;
+  justify-items: center;
   padding: 0;
   list-style: none;
+  width: 100%;
 }
 
 .crewMember {
-  width: 160px;
-  padding: 15px;
+  width: 150px;
+  height: 180px; 
+  padding: 12px;
   background: rgba(0, 255, 255, 0.08);
   border: 2px solid rgba(0, 255, 255, 0.4);
   border-radius: 10px;

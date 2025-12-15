@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import type { ICharacter, IShipContext } from "../types";
+import { localStorageService } from '../services/localStorageService';
 
 //Creo el contexto de la nave
 export const ShipContext = createContext<IShipContext | undefined>(undefined);
@@ -10,6 +11,24 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     const [credits, setCredits] = useState<number>(1000);
     const [fuel, setFuel] = useState<number>(100);
     const [crew, setCrew] = useState<ICharacter[]>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        const data = localStorageService.getData();
+
+        if(data){
+            setCredits(data.credits);
+            setFuel(data.fuel);
+            setCrew(data.crew);
+        }
+        setIsLoaded(true);
+    }, []);
+
+    useEffect(() => {
+        if(isLoaded){
+            localStorageService.saveData(credits, fuel, crew);
+        }
+    }, [credits, fuel, crew]);
 
     //creo la funcion para asincrona para añadir un personaje a la tripulacion
     //Con sus respectivas validaciones de no superar 4 miembros y que no forme parte ya de la trupulacion
