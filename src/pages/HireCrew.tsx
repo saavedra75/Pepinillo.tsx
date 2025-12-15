@@ -2,7 +2,7 @@ import {useEffect, useState, useContext } from "react";
 import CharacterCards from "../components/CharacterCard";
 import {ShipContext} from "../context/ShipContext"
 import type { ICharacter } from "../types";
-import "./HireCrew.css"
+import "../styles/HireCrew.css"
 import { useShip } from "../hooks/useShip";
 
 export default function HireCrew(){
