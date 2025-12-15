@@ -1,14 +1,30 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import "../App.css";
+
 const Navbar = () => {
   return (
     <>
-      <nav style={{ display: "flex", justifyContent: "space-around" }}>
-        <Link to="/">Dashboard</Link>
-        <Link to="/hirecrew">HireCrew</Link>
-        <Link to="/missions">Missions</Link>
+      <nav className="space-navbar">
+        <div className="nav-logo">
+          🚀 COSMIC CARGO
+        </div>
+
+        <div className="nav-links">
+          <NavLink to="/" className="nav-link">
+            Dashboard
+          </NavLink>
+          <NavLink to="/hirecrew" className="nav-link">
+            Hire Crew
+          </NavLink>
+          <NavLink to="/missions" className="nav-link">
+            Missions
+          </NavLink>
+        </div>
       </nav>
+
       <Outlet />
     </>
   );
 };
+
 export default Navbar;
