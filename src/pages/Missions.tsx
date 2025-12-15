@@ -32,6 +32,7 @@ const {credits, crew, fuel, reduceFuel, spendCredits} = useShip();
         {/* Aquí mapearé los planetas */}
       </select>
 
+      <button type="submit" disabled={fuel <= 0}>{fuel <= 0 ? 'No fuel' : 'Send'}</button>
       
     </form>
   );
