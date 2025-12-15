@@ -1,5 +1,5 @@
 import type { ICharacter } from "../types";
-import "./CharacterCard.css"
+import "../styles/CharacterCard.css"
 
 interface Props{
   crew: ICharacter;
