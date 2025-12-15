@@ -10,11 +10,11 @@ export const localStorageService = {
         return JSON.parse(data);
     },
 
-    saveData : (credits: number, fuel: number, crewList: ICharacter[]) => {
+    saveData : (credits: number, fuel: number, crew: ICharacter[]) => {
         const data = {
             credits,
             fuel,
-            crewList
+            crew
         }
         localStorage.setItem('shipData', JSON.stringify(data));
     }

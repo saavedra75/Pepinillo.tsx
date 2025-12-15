@@ -19,7 +19,7 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
         if(data){
             setCredits(data.credits);
             setFuel(data.fuel);
-            setCrew(data.crew);
+            setCrew(Array.isArray(data.crew) ? data.crew : []);
         }
         setIsLoaded(true);
     }, []);
