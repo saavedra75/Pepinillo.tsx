@@ -12,15 +12,15 @@ const[crews, setCrews]=useState<ICharacter[]>([]); //Estado para almacenar los p
 const [searchCrew, setSearchCrew]=useState(""); //Estado para las busquedas
 const {credits, crew, addCrewMember, spendCredits} = useShip();
 
-  useEffect(()=>{
+  useEffect(() => {
     getCharacters()
-    .then(data => {
+    .then((data) => {
       setCrews(data.results);
     })
     .catch(error => {
-      throw new Error("Error al cargar los personajes");
-    })
-  },[]); //[] asegura que solo se ejecute una vez(al montar el componente)
+      console.error("Error al cargar los personajes:", error);
+    });
+  }, []); //[] asegura que solo se ejecute una vez(al montar el componente)
 
 
   const filteredCrews = crews.filter((crews)=>
