@@ -31,8 +31,10 @@ const {credits, crew, addCrewMember, spendCredits} = useShip();
   function addCrew(candidate: ICharacter){
   
    if (crew.length < 4 && credits >= 200) {
-    spendCredits(200);
-    addCrewMember(candidate);
+    if(!addCrewMember(candidate)){
+      return;
+    }
+    spendCredits(200);    
   }
 
 

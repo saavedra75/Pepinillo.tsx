@@ -20,7 +20,7 @@ export interface IShipContext {
   fuel: number;
   crew: ICharacter[];
 
-  addCrewMember: (Character: ICharacter) => void;
+  addCrewMember: (Character: ICharacter) => boolean;
   spendCredits: (amount: number) => void;
   refuel: (amount: number) => void;
   reduceFuel: (amount: number) => void;

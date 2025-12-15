@@ -1,5 +1,6 @@
 .crew-card{
-  background: var(--card-bg);
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(12px);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -25,10 +26,15 @@
   margin-top: 20px;
 }
 .btn-feed {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+    color: #0ff;
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
 }
-.btn-feed:hover { background-color: #b7e4c7; 
+.btn-feed:hover { 
+  color: #0ff;
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); 
 }
 .btn-feed:disabled{
   background-color: #ccc;   /* gris neutro */

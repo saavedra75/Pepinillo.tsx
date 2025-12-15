@@ -13,16 +13,17 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
 
     //creo la funcion para asincrona para añadir un personaje a la tripulacion
     //Con sus respectivas validaciones de no superar 4 miembros y que no forme parte ya de la trupulacion
-    function addCrewMember (ICharacter: ICharacter): void {
+    function addCrewMember (ICharacter: ICharacter): boolean {
         if(crew.length>=4){
-            return;
+            return false;
         }
 
         if(crew.some(member => member.id == ICharacter.id)){
-            return;
+            return false;
         }
 
         setCrew(members => [...members, ICharacter]);
+        return true;
     }
 
     // Creo la funcion asincrona para gastar creditos
