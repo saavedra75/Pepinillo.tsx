@@ -54,6 +54,13 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
         setCredits(remain => remain-amount);
     }
 
+    function addCredits (amount:number) :void{
+        setCredits(currentCredits => {
+            const newCredits = currentCredits+amount;
+            return newCredits;
+        });
+    }
+
     // Creo la funcion asincrona para reabastecer combustible
     function refuel (amount:number): void {
         setFuel(currentFuel => {
@@ -83,6 +90,7 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
             crew,
             addCrewMember,
             spendCredits,
+            addCredits,
             refuel,
             reduceFuel,
             clearCrew
