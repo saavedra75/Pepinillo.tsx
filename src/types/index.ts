@@ -10,6 +10,7 @@ export interface ICharacter {
 
 
 export interface ILocation {
+    id: number;
     name: string;
     url:  string;
 }
