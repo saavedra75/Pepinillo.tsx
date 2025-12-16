@@ -56,12 +56,12 @@
   cursor: pointer;
   outline: none;
   transition: 0.3s ease;
-  color: rgba(201, 250, 255, 0.45); /* placeholder */
+  color: rgba(0, 0, 0, 0.45); /* placeholder */
 }
 
 /* TEXTO CUANDO YA HAY SELECCIÓN */
 .selectGroup select:valid {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0, 0.45);
 }
 
 /* FLECHA CUSTOM */

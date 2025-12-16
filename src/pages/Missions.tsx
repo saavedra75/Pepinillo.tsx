@@ -1,18 +1,35 @@
+import { useEffect, useState } from "react";
 import { ShipContext } from "../context/ShipContext";
 import { useShip } from "../hooks/useShip";
+import { getLocations } from "../services/rickAndMortyService";
+import type { ILocation } from "../types/index";
 import '../styles/Missions.css';
 
 //Función que genera un resultado aleatorio para la misión.
 function generateResult() {
-  return Math.random() === 1 ? 'Victory' : 'Defeat';
+  return Math.random() === 1 ? 'Success' : 'Failure';
 }
 
 
 
 export default function Missions(){
 
-//Importo las funciones y estados que necesitaré para las misiones
-const {credits, crew, fuel, reduceFuel, spendCredits} = useShip();
+  //Importo las funciones y estados que necesitaré para las misiones
+  const {addCredits, crew, fuel, reduceFuel} = useShip();
+
+
+  //Saco los panetas para usarlos en el formulario
+
+  const [planets, setPlanets] = useState<ILocation[]>([]);
+
+  //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
+  useEffect(() => {
+    const fetchPlanets = async () => {
+      const data = await getLocations();
+      setPlanets(data.results);
+    };
+    fetchPlanets();
+  }, []);
 
   //Función que se ejecuta al enviar el formulario de la misión. 
   function startMission() {
@@ -22,19 +39,24 @@ const {credits, crew, fuel, reduceFuel, spendCredits} = useShip();
     let wastedFuel: number = Math.floor(Math.random() * (40 - 15 + 1)) + 15;
 
     //Si falta combustible la misión será cancelada, si no será victoria o derrota
+    let result: String;
     if (wastedFuel > fuel) {
-      let result: string = 'Cancelled';
+      result = 'Cancelled';
+      wastedFuel = 0;
     } else {
-      let result: string = generateResult();
+      result = generateResult();
     }
 
+    reduceFuel(wastedFuel);
+
+
+
+    }
     
-  }
 
 return (
   <div className="missionPage">
     <form className="missionForm" onSubmit={startMission}>
-
       <h2 className="formTitle">START MISSION</h2>
 
       <div className="selectGroup">
@@ -54,11 +76,10 @@ return (
 
       <div className="selectGroup">
         <select name="planet" id="planet" required>
-          <option value="" disabled selected>
-            Select destination
-          </option>
-          <option value="Earth">Earth</option>
-          <option value="Mars">Mars</option>
+          <option value="" disabled selected>Select destination</option>
+        {planets.map(planet => (
+          <option key={planet.name} value={planet.name}>{planet.name}</option>
+        ))}
         </select>
         <span className="selectGlow"></span>
         <label htmlFor="planet">Planet</label>
