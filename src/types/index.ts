@@ -40,7 +40,6 @@ export interface ILocationResponse {
   results: ILocation[];
 }
 
-
 export interface IMissionSum {
   result: string;
   wastedFuel: number;
