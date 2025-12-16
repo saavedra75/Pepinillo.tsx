@@ -19,7 +19,7 @@ function generateResult() {
   export default function Missions(){
   const [missionSum, setMissionSum] = useState <IMissionSum>({result: '', wastedFuel: 0, addedCredits: 0})
 
-  //Importo las funciones y estados que necesitaré para las misiones
+      //Importo las funciones y estados que necesitaré para las misiones
   const {addCredits, crew, fuel, reduceFuel} = useShip();
 
 
