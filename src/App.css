@@ -3,6 +3,10 @@ body, #root {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  /* background: rgba(10, 15, 30, 0.6);   */
+  background-image: url(./assets/backgroundImage.png);
+  background-size:cover;
+  background-position: center;
 }
 
 .space-navbar {

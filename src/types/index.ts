@@ -22,12 +22,17 @@ export interface IShipContext {
 
   addCrewMember: (Character: ICharacter) => boolean;
   spendCredits: (amount: number) => void;
+  addCredits: (amount: number) => void;
   refuel: (amount: number) => void;
   reduceFuel: (amount: number) => void;
   clearCrew: () => void;
 }
 
 export interface ICharacterResponse {
+  info: {
+    next: string | null;
+    prev: string | null;
+  };
   results: ICharacter[];
 }
 
