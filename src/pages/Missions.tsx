@@ -41,17 +41,17 @@ export default function Missions(){
     let result: String;
     if (wastedFuel > fuel) {
       result = 'Cancelled';
+      wastedFuel = 0;
     } else {
       result = generateResult();
     }
 
-    if (result === 'Success') {
-      reduceFuel(wastedFuel);
-    } else if (result === 'Failure') {
-      reduceFuel(wastedFuel);
+    reduceFuel(wastedFuel);
+
+
+
     }
     
-  }
 
 
   return (
