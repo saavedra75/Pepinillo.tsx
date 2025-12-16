@@ -29,9 +29,20 @@ export interface IShipContext {
 }
 
 export interface ICharacterResponse {
+  info: {
+    next: string | null;
+    prev: string | null;
+  };
   results: ICharacter[];
 }
 
 export interface ILocationResponse {
   results: ILocation[];
+}
+
+
+export interface IMissionResponse{
+  result: String;
+  wastedFuel: number;
+  addedCredits: number;
 }
