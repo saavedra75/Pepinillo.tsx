@@ -39,3 +39,10 @@ export interface ICharacterResponse {
 export interface ILocationResponse {
   results: ILocation[];
 }
+
+
+export interface IMissionResponse{
+  result: String;
+  wastedFuel: number;
+  addedCredits: number;
+}
