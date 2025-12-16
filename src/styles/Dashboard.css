@@ -4,8 +4,8 @@
 
 /* ======== CONTENEDOR PRINCIPAL ======== */
 .container {
-  flex: 1; /* 🔥 ocupa el espacio restante */
-  overflow: hidden; /* 🔥 evita scroll */
+  flex: 1; 
+  overflow: hidden; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
 /* ======== PANEL BASE ======== */
 .panel {
   flex: 1;
-  height: 70%;
+  height: 80%;
   min-width: 320px;
   display: flex;
   flex-direction: column;
