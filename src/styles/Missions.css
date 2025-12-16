@@ -1,0 +1,143 @@
+#root {
+  height: 100vh;
+}
+
+/* ===== PAGE CENTER ===== */
+.missionPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+}
+
+/* ===== FORM ===== */
+.missionForm {
+  width: 420px;
+  padding: 40px 35px;
+  background: rgba(10, 15, 30, 0.65);
+  border-radius: 16px;
+  border: 2px solid rgba(0, 255, 255, 0.35);
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.25),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: #c9faff;
+}
+
+/* ===== TITLE ===== */
+.formTitle {
+  text-align: center;
+  color: cyan;
+  letter-spacing: 4px;
+  font-size: 1.8rem;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* ===== SELECT GROUP ===== */
+.selectGroup {
+  position: relative;
+}
+
+/* ===== SELECT ===== */
+.selectGroup select {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.35);
+  padding: 14px 30px 14px 5px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s ease;
+  color: rgba(201, 250, 255, 0.45); /* placeholder */
+}
+
+/* TEXTO CUANDO YA HAY SELECCIÓN */
+.selectGroup select:valid {
+  color: rgb(0, 0, 0);
+}
+
+/* FLECHA CUSTOM */
+.selectGroup::after {
+  content: "▾";
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: cyan;
+  pointer-events: none;
+}
+
+/* LABEL */
+.selectGroup label {
+  position: absolute;
+  left: 5px;
+  top: -10px;
+  font-size: 0.75rem;
+  color: cyan;
+  letter-spacing: 2px;
+}
+
+/* FOCUS */
+.selectGroup select:focus {
+  border-color: cyan;
+}
+
+/* GLOW LINE */
+.selectGlow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: cyan;
+  box-shadow: 0 0 15px cyan;
+  transition: 0.4s ease;
+}
+
+.selectGroup select:focus ~ .selectGlow {
+  width: 100%;
+}
+
+/* ===== BUTTON ===== */
+.submitBtn {
+  margin-top: 10px;
+  padding: 14px;
+  background: linear-gradient(135deg, #00ffff33, #00ffff11);
+  border: 2px solid cyan;
+  color: cyan;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submitBtn:hover:not(.disabled) {
+  background: cyan;
+  color: #020611;
+  box-shadow: 0 0 35px cyan;
+  transform: scale(1.05);
+}
+
+.submitBtn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+  .missionForm {
+    width: 90%;
+    padding: 30px;
+  }
+}
