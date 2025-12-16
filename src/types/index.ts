@@ -41,8 +41,8 @@ export interface ILocationResponse {
 }
 
 
-export interface IMissionResponse{
-  result: String;
+export interface IMissionSum {
+  result: string;
   wastedFuel: number;
   addedCredits: number;
 }
