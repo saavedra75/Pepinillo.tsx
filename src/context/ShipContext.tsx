@@ -63,10 +63,11 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     // Creo la funcion asincrona para reabastecer combustible
-    function refuel (amount:number): void {
-        setFuel(currentFuel => {
-            const newFuel = currentFuel+amount;
-            return newFuel > 100 ? 100 : newFuel;
+    function refuel (): void {
+        setFuel(100);
+        setCredits(currentCredits => {
+            const newCredits = currentCredits-250;
+            return newCredits < 0 ? 0 : newCredits;
         });
     }
 
