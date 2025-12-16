@@ -1,49 +1,78 @@
-.crew-card{
+/* ======== TARJETA DE PERSONAJE ======== */
+.crew-card {
   background: rgba(10, 15, 30, 0.6);
+  color: white;
   backdrop-filter: blur(12px);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e0e0e0;
   text-align: center;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+
+/* Estado Dead: tono rojizo */
+.dead-card {
+  background: rgba(60, 0, 0, 0.6);          /* fondo rojizo */
+  border: 1px solid rgba(255, 0, 0, 0.6);   /* borde rojo */
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);/* glow rojo */
+}
+
+.dead-card h3, 
+.dead-card p {
+  color: #ff6666;                           /* texto rojizo */
+}
+
 
 .crew-card img {
-  width: 100%;
-  border-radius: 8px;
+  width: 100%;                         /* imagen ocupa todo el ancho */
+  border-radius: 8px;                  /* esquinas redondeadas */
+  object-fit: cover;                   /* asegura proporción correcta */
 }
+
+/* Hover: efecto de elevación y resalte */
 .crew-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  border-color: var(--primary-color);
+  transform: translateY(-3px);         /* levanta ligeramente la tarjeta */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* sombra más marcada */
+  border-color: var(--primary-color);  /* resalta borde con color principal */
 }
-/* Botones de acción */
+
+/* ======== ACCIONES DE LA TARJETA ======== */
 .card-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 20px;
+  display: flex;            /* usa flexbox */
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;      /* centra verticalmente */
+  margin-top: 20px;         /* separación respecto al contenido */
 }
+
+/* ======== BOTONES DE ACCIÓN ======== */
 .btn-feed {
-    color: #0ff;
-  background: rgba(0, 255, 255, 0.2);
-  border: 1px solid rgba(0, 255, 255, 0.6);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  color: #0ff;                         /* texto cian */
+  background: rgba(0, 255, 255, 0.2);  /* fondo translúcido */
+  border: 1px solid rgba(0, 255, 255, 0.6); /* borde cian */
+  border-radius: 8px;                  /* esquinas redondeadas */
+  font-family: "Orbitron", sans-serif; /* tipografía robótica */
+  cursor: pointer;                     /* cursor de acción */
+  padding: 8px 16px;                   /* tamaño cómodo */
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); /* efecto glow */
+  transition: background 0.3s ease, 
+              box-shadow 0.3s ease;    /* animaciones suaves */
 }
+
+/* Hover: resalta el botón */
 .btn-feed:hover { 
-  color: #0ff;
-  background: rgba(0, 255, 255, 0.1);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); 
+  background: rgba(0, 255, 255, 0.1);  /* fondo más tenue */
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* glow reducido */
 }
-.btn-feed:disabled{
-  background-color: #ccc;   /* gris neutro */
-  color: #666;              /* texto apagado */
-  cursor: not-allowed;      /* icono de prohibido */
-  opacity: 0.7;             /* efecto visual */
+
+/* Estado deshabilitado */
+.btn-feed:disabled {
+  background-color: #ccc;              /* gris neutro */
+  color: #666;                         /* texto apagado */
+  cursor: not-allowed;                 /* icono prohibido */
+  opacity: 0.7;                        /* efecto visual */
 }
+
 .btn-feed:disabled:hover {
-  background-color: #ccc;   /* evita que cambie al hover */
+  background-color: #ccc;              /* evita hover */
 }
-
-

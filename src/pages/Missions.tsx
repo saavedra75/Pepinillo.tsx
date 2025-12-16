@@ -4,7 +4,7 @@ import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ILocation } from "../types/index";
 import '../styles/Missions.css';
-import MissionResult from '../components/missionResult';
+import MissionResult from '../components/MissionResult';
 import type { IMissionSum } from '../types/index';
 
   //Función que genera un resultado aleatorio para la misión.
