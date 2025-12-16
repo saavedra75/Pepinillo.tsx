@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ShipContext } from "../context/ShipContext";
 import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
@@ -7,24 +7,22 @@ import '../styles/Missions.css';
 import MissionResult from '../components/missionResult';
 import type { IMissionSum } from '../types/index';
 
-//Función que genera un resultado aleatorio para la misión.
-function generateResult() {
-  return Math.random() < 0.75 ? 'Success' : 'Failure';
-}
+  //Función que genera un resultado aleatorio para la misión.
+  function generateResult() {
+    return Math.random() < 0.75 ? 'Success' : 'Failure';
+  }
 
-  //Estado de la mision para ir renderizando el resumen
-  
-  
-  
   export default function Missions(){
-  const [missionSum, setMissionSum] = useState <IMissionSum>({result: '', wastedFuel: 0, addedCredits: 0})
-
       //Importo las funciones y estados que necesitaré para las misiones
-  const {addCredits, crew, fuel, reduceFuel} = useShip();
+  const {addCredits, crew, fuel, reduceFuel, mission, saveMission} = useShip();
+
+  //Estado de la misión. Al enviar el formulario este contexto cambia, el useEffect reacciona al cambio,
+  //espera los 3 segundos y ejecuta lo necesario
+
+  const [missionFlag, setMissionFlag] = useState(false);
 
 
   //Saco los panetas para usarlos en el formulario
-
   const [planets, setPlanets] = useState<ILocation[]>([]);
 
   //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
@@ -36,10 +34,11 @@ function generateResult() {
     fetchPlanets();
   }, []);
 
-  //Función que se ejecuta al enviar el formulario de la misión. 
-  function startMission() {
+  useEffect(() => {
+    if (!missionFlag) return;
 
-    //Obtengo los datos 
+    const timer = setTimeout(()=> {
+
     //Combustible que se va a usar (entre 15% y 40%)
     let wastedFuel: number = Math.floor(Math.random() * (40 - 15 + 1)) + 15;
 
@@ -61,13 +60,20 @@ function generateResult() {
 
     addCredits(addedCredits);
 
+    saveMission({result, wastedFuel, addedCredits});
+    setMissionFlag(false);
+  }, 3000);
+
+    return () => clearTimeout(timer);
+
+  }, [missionFlag]);
+
+  //Función que se ejecuta al enviar el formulario de la misión. 
+  function startMission(e: React.FormEvent) {
+    e.preventDefault();
     
-    setMissionSum({result: result, wastedFuel: wastedFuel, addedCredits: addedCredits})
-
-
-
-
-    }
+    setMissionFlag(true); //Para que el useEffect reaccione y realice la lógica
+  }
     
 
 return (
@@ -103,14 +109,13 @@ return (
 
       <button
         type="submit"
-        className={`submitBtn ${fuel <= 0 ? "disabled" : ""}`}
+        className={`submitBtn ${fuel <= 14 ? "disabled" : ""}`}
         disabled={fuel <= 0}
       >
-        {fuel <= 0 ? "NO FUEL" : "SEND MISSION"}
+        {fuel <= 14 ? "NO FUEL" : "SEND MISSION"}
       </button>
-      <MissionResult></MissionResult>
-
     </form>
+    <MissionResult></MissionResult>
   </div>
 );
 
