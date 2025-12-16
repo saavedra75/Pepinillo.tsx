@@ -1,6 +1,4 @@
 import { useShip } from "../hooks/useShip";
-
-
 export default function MissionResult() {
     
     const {mission} = useShip();
