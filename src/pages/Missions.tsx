@@ -4,7 +4,7 @@ import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ICharacter, ILocation } from "../types/index";
 import '../styles/Missions.css';
-import MissionResult from '../components/missionResult';
+import MissionResult from '../components/MissionResult';
 import type { IMissionSum } from '../types/index';
 import { getCharacterById } from "../services/rickAndMortyService";
 import { getLocationById } from "../services/rickAndMortyService";
