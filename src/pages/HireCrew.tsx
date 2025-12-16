@@ -1,18 +1,23 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import CharacterCards from "../components/CharacterCard";
-import { ShipContext } from "../context/ShipContext"
-import "../styles/HireCrew.css"
-import type { ICharacter, ICharacterResponse } from "../types";
 import { useShip } from "../hooks/useShip";
-import { getCharacters, getNextPageCharacters, getPrevPageCharacters } from "../services/rickAndMortyService";
+import "../styles/HireCrew.css";
+import type { ICharacter } from "../types";
+import {
+  getCharacters,
+  getNextPageCharacters,
+  getPrevPageCharacters,
+} from "../services/rickAndMortyService";
 
 export default function HireCrew() {
+  const [crews, setCrews] = useState<ICharacter[]>([]);
+  const [searchCrew, setSearchCrew] = useState("");
+  const [hireMessage, setHireMessage] = useState<string | null>(null);
+  const [nextUrl, setNextUrl] = useState<string | null>(null);
+  const [prevUrl, setPrevUrl] = useState<string | null>(null);
 
-  const [crews, setCrews] = useState<ICharacter[]>([]); //Estado para almacenar los posts
-  const [searchCrew, setSearchCrew] = useState(""); //Estado para las busquedas
   const { credits, crew, addCrewMember, spendCredits } = useShip();
-  const [nextUrl, setNextUrl] = useState<string | null>(null); //Estado para guardar la URL de la siguiente página
-  const [prevUrl, setPrevUrl] = useState<string | null>(null); //Estado para guardar la URL de la anterior página
+
   useEffect(() => {
     getCharacters()
       .then((data) => {
@@ -20,69 +25,108 @@ export default function HireCrew() {
         setNextUrl(data.info.next);
         setPrevUrl(data.info.prev);
       })
-      .catch(error => {
-        console.error("Error al cargar los personajes:", error);
+      .catch((error) => {
+        console.error("Error loading characters:", error);
       });
-  }, []); //[] asegura que solo se ejecute una vez(al montar el componente)
+  }, []);
 
-  const filteredCrews = crews.filter((crews) =>
-    crews.name.toLowerCase().includes(searchCrew.toLocaleLowerCase())
+  const filteredCrews = crews.filter((candidate) =>
+    candidate.name.toLowerCase().includes(searchCrew.toLowerCase())
   );
 
   function addCrew(candidate: ICharacter) {
-
     if (crew.length < 4 && credits >= 200) {
-      if (!addCrewMember(candidate)) {
-        return;
+      if (!crew.some((member) => member.id === candidate.id)) {
+        addCrewMember(candidate);
+        spendCredits(200);
+        setHireMessage(`${candidate.name} has been hired to your crew.`);
+         setTimeout(() => {
+        setHireMessage(null);
+      }, 3000);
+
       }
-      spendCredits(200);
     }
-
-
   }
+
+  function handlePrev() {
+    if (!prevUrl) return;
+    getPrevPageCharacters(prevUrl)
+      .then((data) => {
+        setCrews(data.results);
+        setNextUrl(data.info.next);
+        setPrevUrl(data.info.prev);
+      })
+      .catch((error) => {
+        console.error("Error loading characters:", error);
+      });
+  }
+
+  function handleNext() {
+    if (!nextUrl) return;
+    getNextPageCharacters(nextUrl)
+      .then((data) => {
+        setCrews(data.results);
+        setNextUrl(data.info.next);
+        setPrevUrl(data.info.prev);
+      })
+      .catch((error) => {
+        console.error("Error loading characters:", error);
+      });
+  }
+
   return (
     <>
-      <h2>HireCrew</h2>
-      <input
-        className="searchInput"
-        type="text"
-        placeholder="Buscar tripulante..."
-        value={searchCrew}
-        onChange={(e) => setSearchCrew(e.target.value)}
-      />
-      <div className="crew-grid">
-        {filteredCrews.map((candidate) => (
-          <CharacterCards key={candidate.id} crew={candidate} onHire={addCrew} />
-        ))}
+  <h1 className="section-title">HIRECREW</h1>
+  <div className="Space-Tavern">
+  <div className="shipCrew panel">
+  <h2 className="crewListTitle">CREW LIST</h2>
 
-<div className="btn-grid">
-      <button className="btn-feed " onClick={() => {
-        getPrevPageCharacters(prevUrl!)
-          .then((data) => {
-            setCrews(data.results);
-            setNextUrl(data.info.next);
-            setPrevUrl(data.info.prev);
-          })
-          .catch(error => {
-            console.error("Error al cargar los personajes:", error);
-          })
-      }
-      }>Prev</button>
-      <button className="btn-feed " onClick={() => {
-        getNextPageCharacters(nextUrl!)
-          .then((data) => {
-            setCrews(data.results);
-            setNextUrl(data.info.next);
-            setPrevUrl(data.info.prev);
-          })
-          .catch(error => {
-            console.error("Error al cargar los personajes:", error);
-          })
-      }}>Next</button>
-      </div>
-      </div>
-      
-      </>
-    );
+  {crew.length === 0 ? (
+    <p className="empty">There is no crew assigned. Go to 'Hire Crew' to hire.</p>
+  ) : (
+    <div className="crewFormation">
+      {crew.map((member, index) => (
+        <div key={index} className="crewSlot">
+          <img src={member.image} alt={member.name} />
+          <p>{member.name}</p>
+        </div>
+      ))}
+    </div>
+  )}
 
+  {hireMessage && <div className="alert info-alert">{hireMessage}</div>}
+</div>
+
+        <div className="crew-grid">
+          <input
+            className="searchInput"
+            type="text"
+            placeholder="Find crew member…"
+            value={searchCrew}
+            onChange={(e) => setSearchCrew(e.target.value)}
+          />
+
+          <div className="grid-content">
+            {filteredCrews.map((candidate) => (
+              <CharacterCards
+                key={candidate.id}
+                crew={candidate}
+                onHire={addCrew}
+                isFullTeam={crew.length >= 4}
+              />
+            ))}
+          </div>
+
+          <div className="btn-grid">
+            <button className="btn-feed" onClick={handlePrev} disabled={!prevUrl}>
+              Prev
+            </button>
+            <button className="btn-feed" onClick={handleNext} disabled={!nextUrl}>
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
