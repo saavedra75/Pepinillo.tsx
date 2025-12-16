@@ -1,13 +1,8 @@
 import {useEffect, useState, useContext } from "react";
 import CharacterCards from "../components/CharacterCard";
 import {ShipContext} from "../context/ShipContext"
-<<<<<<< HEAD
-import type { ICharacter } from "../types";
 import "../styles/HireCrew.css"
-=======
 import type { ICharacter, ICharacterResponse } from "../types";
-import "./HireCrew.css"
->>>>>>> Manuel
 import { useShip } from "../hooks/useShip";
 import { getCharacters } from "../services/rickAndMortyService";
 

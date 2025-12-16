@@ -24,9 +24,7 @@ export interface IShipContext {
   spendCredits: (amount: number) => void;
   refuel: (amount: number) => void;
   reduceFuel: (amount: number) => void;
-<<<<<<< HEAD
   clearCrew: () => void;
-=======
 }
 
 export interface ICharacterResponse {
@@ -35,5 +33,4 @@ export interface ICharacterResponse {
 
 export interface ILocationResponse {
   results: ILocation[];
->>>>>>> Manuel
 }
