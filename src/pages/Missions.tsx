@@ -3,6 +3,7 @@ import { ShipContext } from "../context/ShipContext";
 import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ILocation } from "../types/index";
+import '../styles/Missions.css';
 
 //Función que genera un resultado aleatorio para la misión.
 function generateResult() {
@@ -53,25 +54,49 @@ export default function Missions(){
     }
     
 
+return (
+  <div className="missionPage">
+    <form className="missionForm" onSubmit={startMission}>
+      <h2 className="formTitle">START MISSION</h2>
 
-  return (
-    <form onSubmit={startMission}>
-      <label htmlFor="crew"></label>
-        <select name="crew" id="crew">
-        {crew.map(crewMate => (
-          <option key={crewMate.id} value={crewMate.id}>{crewMate.name}</option>
-        ))}
-      </select>
-      <label htmlFor="planet"></label>
-        <select name="planet" id="planet">
+      <div className="selectGroup">
+        <select name="crew" id="crew" required>
+          <option value="" disabled selected>
+            Select crew member
+          </option>
+          {crew.map(crewMate => (
+            <option key={crewMate.id} value={crewMate.id}>
+              {crewMate.name}
+            </option>
+          ))}
+        </select>
+        <span className="selectGlow"></span>
+        <label htmlFor="crew">Crew</label>
+      </div>
+
+      <div className="selectGroup">
+        <select name="planet" id="planet" required>
+          <option value="" disabled selected>Select destination</option>
         {planets.map(planet => (
           <option key={planet.name} value={planet.name}>{planet.name}</option>
         ))}
-      </select>
+        </select>
+        <span className="selectGlow"></span>
+        <label htmlFor="planet">Planet</label>
+      </div>
 
-      <button type="submit" disabled={fuel <= 0}>{fuel <= 0 ? 'No fuel' : 'Send'}</button>
-      
+      <button
+        type="submit"
+        className={`submitBtn ${fuel <= 0 ? "disabled" : ""}`}
+        disabled={fuel <= 0}
+      >
+        {fuel <= 0 ? "NO FUEL" : "SEND MISSION"}
+      </button>
+
     </form>
-  );
+  </div>
+);
+
+ 
 
 }
