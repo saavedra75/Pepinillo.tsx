@@ -24,5 +24,16 @@ export interface IShipContext {
   spendCredits: (amount: number) => void;
   refuel: (amount: number) => void;
   reduceFuel: (amount: number) => void;
+<<<<<<< HEAD
   clearCrew: () => void;
+=======
+}
+
+export interface ICharacterResponse {
+  results: ICharacter[];
+}
+
+export interface ILocationResponse {
+  results: ILocation[];
+>>>>>>> Manuel
 }
