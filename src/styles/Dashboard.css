@@ -124,6 +124,7 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  color: #fff;
 }
 
 
@@ -138,13 +139,11 @@
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
   transition: 0.2s ease;
 }
 
 .refuelBtn:hover {
-  transform: scale(1.07);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+  transform: scale(1.02);
 }
 
 /* ======== TRIPULACIÓN ======== */

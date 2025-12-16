@@ -32,7 +32,7 @@ export default function Dashboard(){
 
           {fuel < 25 && fuel > 15 && (
               <button className="refuelBtn" style={{width:"25%", alignSelf:"center"}} onClick={() => refuel()}>
-                Refuel
+                Refuel (250 CREDITS)
               </button>
           )}
 
@@ -41,7 +41,7 @@ export default function Dashboard(){
                 <h2>⚠️ SHIP ADRIFT ⚠️</h2>
                 <p>The fuel has run out and the ship is adrift in space. Refuel to continue your journey!</p>
                 <button className="refuelBtn" onClick={() => refuel()}>
-                  Refuel
+                  Refuel (250 CREDITS)
                 </button>
               </div>
           )}
