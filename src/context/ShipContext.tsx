@@ -15,7 +15,8 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     const [mission, setMission] = useState<IMissionSum>({
         result: "None",
         wastedFuel: 0,
-        addedCredits: 0
+        addedCredits: 0,
+
     });
 
     // Cargo los datos del localStorage al iniciar el componente

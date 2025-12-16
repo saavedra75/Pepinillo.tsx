@@ -28,6 +28,16 @@ export default function MissionResult() {
             <p><b>General result: This mission has been a disaster, as expected.</b></p>
             <p><b>Earned Credits: {mission.addedCredits}</b></p>
             <p><b>Wasted Fuel: {mission.wastedFuel}</b></p>
+            {/*
+            <div className="crewMember">
+                <img src={member.image} alt={member.name} />
+                <span>{member.name}</span>
+            </div>
+            <div className="crewMember">
+                <img src={member.image} alt={member.name} />
+                <span>{member.name}</span>
+            </div>
+            */}
         </div>    
         )   
     }

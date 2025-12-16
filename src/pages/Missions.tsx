@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { ShipContext } from "../context/ShipContext";
 import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
-import type { ILocation } from "../types/index";
+import type { ICharacter, ILocation } from "../types/index";
 import '../styles/Missions.css';
 import MissionResult from '../components/missionResult';
 import type { IMissionSum } from '../types/index';
+import { getCharacterById } from "../services/rickAndMortyService";
+import { getLocationById } from "../services/rickAndMortyService";
 
   //Función que genera un resultado aleatorio para la misión.
   function generateResult() {
@@ -21,9 +23,15 @@ import type { IMissionSum } from '../types/index';
 
   const [missionFlag, setMissionFlag] = useState(false);
 
-
   //Saco los panetas para usarlos en el formulario
   const [planets, setPlanets] = useState<ILocation[]>([]);
+
+  //Member enviado a la misión
+  const [member, setMember] = useState <ICharacter>(crew[0]);
+
+  function changeMember(e: React.InputEvent) {
+    //setMember(getCharacterById(e.target));
+  }
 
   //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
   useEffect(() => {
@@ -100,7 +108,7 @@ return (
         <select name="planet" id="planet" required>
           <option value="" disabled selected>Select destination</option>
         {planets.map(planet => (
-          <option key={planet.name} value={planet.name}>{planet.name}</option>
+          <option key={planet.id} value={planet.id}>{planet.name}</option>
         ))}
         </select>
         <span className="selectGlow"></span>
