@@ -13,6 +13,9 @@
   padding: 40px;
   font-family: "Orbitron", sans-serif;
   color: #c9faff;
+  background-image: url(../assets/backgroundImage.png);
+  background-size:cover;
+  background-position: center;
 }
 
 
@@ -23,7 +26,6 @@
   min-width: 320px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background: rgba(10, 15, 30, 0.6);  
   border-radius: 12px;
   padding: 30px;
@@ -48,7 +50,27 @@
   letter-spacing: 2px;
 }
 
+/* ====== RESUMEN ULTIMA MISION =========== */
+
+.missionList {
+  margin-top: 20px;
+  list-style: none;
+  text-align: left;
+  font-size: 40px;
+  color: #c9faff;
+}
+
+.missionList li {
+  margin: 40px 0;
+}
+
+
 /* ======== ESTADÍSTICAS ======== */
+
+.dashboard{
+  justify-content: space-between;
+}
+
 .stat {
   font-size: 1.4rem;
   margin: 12px 0;
@@ -64,39 +86,83 @@
   margin-bottom: 40px;
 }
 
-.fuel-high {
-  color: #00ff00; /* Verde */
-  font-weight: bold;
+/* ======== BARRAS PROGRESIVAS ======== */
+
+.progressBar {
+  width: 80%;
+  height: 14px;
+  background: rgba(0, 255, 255, 0.15);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: -20px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
-.fuel-medium {
-  color: #ff9900; /* Amarillo */
-  font-weight: bold;
+.progressFill {
+  height: 100%;
+  transition: width 0.4s ease-out;
+  border-radius: 6px;
 }
 
-.fuel-low {
-  color: #ff0000; /* Rojo anaranjado */
-  font-weight: bold;
+
+/* Fuel → cambia según nivel */
+.fuelFill {
+  background: linear-gradient(90deg, #00ff00, #009900);
+  box-shadow: 0 0 12px #00ff00;
 }
+
+.fuel-low ~ .progressBar .fuelFill {
+  background: linear-gradient(90deg, #ff0000, #990000);
+  box-shadow: 0 0 12px #ff0000;
+}
+
+.fuel-medium ~ .progressBar .fuelFill {
+  background: linear-gradient(90deg, #ff9900, #cc6600);
+  box-shadow: 0 0 12px #ff9900;
+}
+
 
 /* ======== ALERTA ======== */
+
 .alert {
-  max-width: 75%;
-  background: rgba(255, 0, 50, 0.9);
+  max-width: 70%;
+  background: rgba(255, 0, 51, 0.63);
   color: white;
-  padding: 10px;
+  padding: 18px 14px;
   border-radius: 10px;
   text-align: center;
-  font-weight: bold;
-  box-shadow: 0 0 25px red;
-  border: 3px solid #ff4d6d;
-  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 10px red;
+  align-self: center;
+  margin: auto 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 20px red; }
-  50% { box-shadow: 0 0 35px red; }
-  100% { box-shadow: 0 0 20px red; }
+.alert h2{
+  color:white;
+}
+
+.refuelBtn {
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #00000000, #550f0f);
+  border: 2px solid rgb(255, 255, 255);
+  color: white;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.refuelBtn:hover {
+  transform: scale(1.02);
 }
 
 /* ======== TRIPULACIÓN ======== */
@@ -105,7 +171,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -150,24 +216,26 @@
 }
 
 .deleteCrewBtn {
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  background: rgba(255, 0, 50, 0.8);
-  border: 2px solid #ff4d6d;
-  color: white;
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: rgba(255, 80, 80, 0.15);
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  color: #ffb3b3;
   font-family: "Orbitron", sans-serif;
-  font-size: 1rem;
-  border-radius: 8px;
+  font-size: 0.7rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: 0.2s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 50, 0.5);
-  margin-top: auto;
+  box-shadow: 0 0 6px rgba(255, 80, 80, 0.3);
+  align-self: center;
 }
 
 .deleteCrewBtn:hover {
-  background: rgba(255, 0, 50, 1);
-  box-shadow: 0 0 20px rgba(255, 0, 50, 0.8);
+  background: rgba(255, 80, 80, 0.3);
+  border-color: rgba(255, 120, 120, 0.8);
+  color: white;
   transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
 }
 
 /* ======== MENSAJE VACÍO ======== */

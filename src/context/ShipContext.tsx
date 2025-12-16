@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import type { ICharacter, IShipContext } from "../types";
+import type { IMissionSum, ICharacter, IShipContext } from "../types";
 import { localStorageService } from '../services/localStorageService';
 
 //Creo el contexto de la nave
@@ -12,18 +12,32 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     const [fuel, setFuel] = useState<number>(100);
     const [crew, setCrew] = useState<ICharacter[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [mission, setMission] = useState<IMissionSum>({
+        result: "None",
+        wastedFuel: 0,
+        addedCredits: 0
+    });
 
+    // Cargo los datos del localStorage al iniciar el componente
     useEffect(() => {
         const data = localStorageService.getData();
+        const savedMission = localStorageService.getMission();
 
         if(data){
             setCredits(data.credits);
             setFuel(data.fuel);
             setCrew(Array.isArray(data.crew) ? data.crew : []);
         }
+
+        if(savedMission){
+            setMission(savedMission);
+        }
+
         setIsLoaded(true);
     }, []);
 
+
+    // Guardo los datos en el localStorage cada vez que cambian los estados
     useEffect(() => {
         if(isLoaded){
             localStorageService.saveData(credits, fuel, crew);
@@ -63,10 +77,11 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     // Creo la funcion asincrona para reabastecer combustible
-    function refuel (amount:number): void {
-        setFuel(currentFuel => {
-            const newFuel = currentFuel+amount;
-            return newFuel > 100 ? 100 : newFuel;
+    function refuel (): void {
+        setFuel(100);
+        setCredits(currentCredits => {
+            const newCredits = currentCredits-250;
+            return newCredits < 0 ? 0 : newCredits;
         });
     }
 
@@ -79,22 +94,32 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     // Funcion para limpiar la tripulacion
-    function clearCrew(): void {
-        setCrew([]); 
+    function clearMember(id:number): void {
+        setCrew(currentCrew => {
+            const newCrew = currentCrew.filter(f => f.id !== id);
+            return newCrew;
+        })
     }
 
+    // Funcion para guardar la mision
+    function saveMission(newMission: IMissionSum): void {
+        setMission(newMission);
+        localStorageService.saveMission(newMission);
+    }
 
     return (    
         <ShipContext.Provider value={{
             credits,
             fuel,
             crew,
+            mission,
             addCrewMember,
             spendCredits,
             addCredits,
             refuel,
             reduceFuel,
-            clearCrew
+            clearMember,
+            saveMission
         }}>
             {children}
         </ShipContext.Provider>

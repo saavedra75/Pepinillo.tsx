@@ -1,4 +1,4 @@
-import type { ICharacter } from '../types/index';
+import type { ICharacter, IMissionSum } from '../types/index';
 
 export const localStorageService = {
 
@@ -27,6 +27,15 @@ export const localStorageService = {
         parsed.crew = [];
 
         localStorage.setItem('shipData', JSON.stringify(parsed));
+    },
+
+    saveMission: (mission: IMissionSum) => {
+        localStorage.setItem("mission", JSON.stringify(mission));
+    },
+
+    getMission: () => {
+        const data = localStorage.getItem("mission");
+        return data ? JSON.parse(data) : null;
     }
 
 }

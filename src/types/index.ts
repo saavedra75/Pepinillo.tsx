@@ -19,13 +19,15 @@ export interface IShipContext {
   credits: number;
   fuel: number;
   crew: ICharacter[];
+  mission: IMissionSum;
 
   addCrewMember: (Character: ICharacter) => boolean;
   spendCredits: (amount: number) => void;
   addCredits: (amount: number) => void;
-  refuel: (amount: number) => void;
+  refuel: () => void;
   reduceFuel: (amount: number) => void;
-  clearCrew: () => void;
+  clearMember: (id:number) => void;
+  saveMission: (newMission: IMissionSum) => void;
 }
 
 export interface ICharacterResponse {
@@ -38,4 +40,10 @@ export interface ICharacterResponse {
 
 export interface ILocationResponse {
   results: ILocation[];
+}
+
+export interface IMissionSum {
+  result: string;
+  wastedFuel: number;
+  addedCredits: number;
 }
