@@ -13,12 +13,12 @@ function generateResult() {
 }
 
   //Estado de la mision para ir renderizando el resumen
-  const [missionSum, setMissionSum] = useState <IMissionSum>({result: '', wastedFuel: 0, addedCredits: 0})
-
-
-
-export default function Missions(){
-
+  
+  
+  
+  export default function Missions(){
+    
+    const [missionSum, setMissionSum] = useState <IMissionSum>({result: '', wastedFuel: 0, addedCredits: 0})
   //Importo las funciones y estados que necesitaré para las misiones
   const {addCredits, crew, fuel, reduceFuel} = useShip();
 
