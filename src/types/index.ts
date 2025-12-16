@@ -26,7 +26,7 @@ export interface IShipContext {
   addCredits: (amount: number) => void;
   refuel: () => void;
   reduceFuel: (amount: number) => void;
-  clearCrew: () => void;
+  clearMember: (id:number) => void;
   saveMission: (newMission: IMissionSum) => void;
 }
 

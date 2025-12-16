@@ -94,8 +94,11 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     // Funcion para limpiar la tripulacion
-    function clearCrew(): void {
-        setCrew([]); 
+    function clearMember(id:number): void {
+        setCrew(currentCrew => {
+            const newCrew = currentCrew.filter(f => f.id !== id);
+            return newCrew;
+        })
     }
 
     // Funcion para guardar la mision
@@ -115,7 +118,7 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
             addCredits,
             refuel,
             reduceFuel,
-            clearCrew,
+            clearMember,
             saveMission
         }}>
             {children}

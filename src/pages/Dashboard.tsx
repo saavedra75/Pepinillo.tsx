@@ -2,7 +2,7 @@ import { useShip } from "../hooks/useShip";
 import "../styles/Dashboard.css";
 
 export default function Dashboard(){
-    const { credits, fuel, crew, clearCrew, refuel } = useShip();
+    const { credits, fuel, crew, clearMember, refuel } = useShip();
     
     return (
       <div className="container">
@@ -60,13 +60,11 @@ export default function Dashboard(){
                 <li key={index} className="crewMember">
                   <img src={member.image} alt={member.name} />
                   <span>{member.name}</span>
+                  <button className="deleteCrewBtn" onClick={() => clearMember(member.id)}>Clear Member</button>
                 </li>
               ))}
             </ul>
           )}
-          <button className="deleteCrewBtn" onClick={clearCrew}>
-            Clear Crew
-          </button>
         </div>
       </div>
     );
