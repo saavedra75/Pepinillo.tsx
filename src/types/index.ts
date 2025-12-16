@@ -46,4 +46,6 @@ export interface IMissionSum {
   result: string;
   wastedFuel: number;
   addedCredits: number;
+  crewMember: ICharacter | null;
+  location: ILocation | null;
 }
