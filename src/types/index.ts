@@ -27,3 +27,11 @@ export interface IShipContext {
   reduceFuel: (amount: number) => void;
   clearCrew: () => void;
 }
+
+export interface ICharacterResponse {
+  results: ICharacter[];
+}
+
+export interface ILocationResponse {
+  results: ILocation[];
+}
