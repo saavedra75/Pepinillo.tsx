@@ -39,10 +39,10 @@
 
 /* ======== ACCIONES DE LA TARJETA ======== */
 .card-actions {
-  display: flex;                       /* botones en fila */
-  justify-content: space-between;      /* separación máxima entre ellos */
-  gap: 10px;                           /* espacio entre botones */
-  margin-top: 20px;                    /* separación respecto al contenido */
+  display: flex;            /* usa flexbox */
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;      /* centra verticalmente */
+  margin-top: 20px;         /* separación respecto al contenido */
 }
 
 /* ======== BOTONES DE ACCIÓN ======== */
