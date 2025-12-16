@@ -108,12 +108,13 @@ export default function HireCrew() {
 
           <div className="grid-content">
             {filteredCrews.map((candidate) => (
-              <CharacterCards
-                key={candidate.id}
-                crew={candidate}
-                onHire={addCrew}
-                isFullTeam={crew.length >= 4}
-              />
+            <CharacterCards
+              key={candidate.id}
+              crew={candidate}
+              onHire={addCrew}
+              isFullTeam={crew.length >= 4}
+              isInCrew={crew.some(member => member.id === candidate.id)} // 🔹 nuevo
+            />
             ))}
           </div>
 
