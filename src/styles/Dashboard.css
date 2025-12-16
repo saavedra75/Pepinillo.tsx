@@ -81,10 +81,10 @@
 
 /* ======== ALERTA ======== */
 .alert {
-  width: 82%;
+  max-width: 75%;
   background: rgba(255, 0, 50, 0.9);
   color: white;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   text-align: center;
   font-weight: bold;
