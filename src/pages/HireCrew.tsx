@@ -25,9 +25,8 @@ export default function HireCrew() {
       });
   }, []); //[] asegura que solo se ejecute una vez(al montar el componente)
 
-
-  const filteredCrews = crews.filter((crews)=>
-  crews.name.toLowerCase().includes(searchCrew.toLocaleLowerCase())
+  const filteredCrews = crews.filter((crews) =>
+    crews.name.toLowerCase().includes(searchCrew.toLocaleLowerCase())
   );
 
   function addCrew(candidate: ICharacter) {
@@ -41,22 +40,48 @@ export default function HireCrew() {
 
 
   }
-    return (
-        <>
-          <h2>HireCrew</h2>
-          <input 
-          className="searchInput"
-          type="text"  
-          placeholder="Buscar tripulante..."
-          value={searchCrew}
-          onChange={(e)=>setSearchCrew(e.target.value)}
-          />
-          <div className="crew-grid">
-          {filteredCrews.map((candidate)=>(
-            <CharacterCards key={candidate.id} crew={candidate} onHire={addCrew}/>
-          ))}
-         
-        </div>
+  return (
+    <>
+      <h2>HireCrew</h2>
+      <input
+        className="searchInput"
+        type="text"
+        placeholder="Buscar tripulante..."
+        value={searchCrew}
+        onChange={(e) => setSearchCrew(e.target.value)}
+      />
+      <div className="crew-grid">
+        {filteredCrews.map((candidate) => (
+          <CharacterCards key={candidate.id} crew={candidate} onHire={addCrew} />
+        ))}
+
+<div className="btn-grid">
+      <button className="btn-feed " onClick={() => {
+        getPrevPageCharacters(prevUrl!)
+          .then((data) => {
+            setCrews(data.results);
+            setNextUrl(data.info.next);
+            setPrevUrl(data.info.prev);
+          })
+          .catch(error => {
+            console.error("Error al cargar los personajes:", error);
+          })
+      }
+      }>Prev</button>
+      <button className="btn-feed " onClick={() => {
+        getNextPageCharacters(nextUrl!)
+          .then((data) => {
+            setCrews(data.results);
+            setNextUrl(data.info.next);
+            setPrevUrl(data.info.prev);
+          })
+          .catch(error => {
+            console.error("Error al cargar los personajes:", error);
+          })
+      }}>Next</button>
+      </div>
+      </div>
+      
       </>
     );
 

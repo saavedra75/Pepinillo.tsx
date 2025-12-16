@@ -19,7 +19,7 @@ export default function CharacterCard({crew, onHire}:Props){
         className="btn-action btn-feed" 
         onClick={()=>onHire(crew)}
           disabled={crew.status==="Dead"||crew.status==="unknown"}
-          >Contratar</button>
+          >Hire</button>
         </div>                         
     </div>            
     </>
