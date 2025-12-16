@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { ShipContext } from "../context/ShipContext";
 import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ILocation } from "../types/index";
