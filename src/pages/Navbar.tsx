@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
       <nav className="space-navbar">
         <div className="nav-logo">
-          🚀 COSMIC CARGO
+          🥒 PEPINILLO.TSX
         </div>
 
         <div className="nav-links"> 
