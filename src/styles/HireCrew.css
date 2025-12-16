@@ -1,9 +1,63 @@
 .crew-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
+  width: 75%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 20px 40px;
+
+  /* estética sci-fi */
+  background: rgba(10, 15, 30, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
 }
 
+
+h2{
+
+}
 .searchInput {
-  width: 10%;
+  width: 200px;
+  padding: 8px 12px;
+
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 8px;
+  color: #0ff;
+  font-family: "Orbitron", sans-serif;
+
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #0ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+
+.btn-feed {
+  padding: 8px 16px; 
+  border-radius: 8px; 
+  font-family: "Orbitron", sans-serif; 
+  cursor: pointer;
+  color: #0ff;
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+.btn-feed:hover { 
+  color: #0ff;
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); 
+}
+.btn-feed:disabled{
+  background-color: #ccc;   /* gris neutro */
+  color: #666;              /* texto apagado */
+  cursor: not-allowed;      /* icono de prohibido */
+  opacity: 0.7;             /* efecto visual */
+}
+.btn-feed:disabled:hover {
+  background-color: #ccc;   /* evita que cambie al hover */
 }

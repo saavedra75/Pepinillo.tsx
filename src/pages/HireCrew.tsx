@@ -22,6 +22,7 @@ const {credits, crew, addCrewMember, spendCredits} = useShip();
     });
   }, []); //[] asegura que solo se ejecute una vez(al montar el componente)
 
+  
 
   const filteredCrews = crews.filter((crews)=>
   crews.name.toLowerCase().includes(searchCrew.toLocaleLowerCase())
@@ -52,7 +53,6 @@ const {credits, crew, addCrewMember, spendCredits} = useShip();
           {filteredCrews.map((candidate)=>(
             <CharacterCards key={candidate.id} crew={candidate} onHire={addCrew}/>
           ))}
-         
         </div>
       </>
     );
