@@ -28,6 +28,10 @@ export interface IShipContext {
 }
 
 export interface ICharacterResponse {
+  info: {
+    next: string | null;
+    prev: string | null;
+  };
   results: ICharacter[];
 }
 
