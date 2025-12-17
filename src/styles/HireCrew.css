@@ -3,7 +3,7 @@
   display: flex;          /* coloca shipCrew y crew-grid en paralelo */
   gap: 20px;              /* separación entre columnas */
   align-items: flex-start;/* alinea arriba ambos bloques */
-  width: 100%;
+  margin: 30px;
 }
 
 /* ======== CONTENEDORES ======== */
@@ -13,6 +13,19 @@
   flex-direction: column; /* apila elementos en columna */
   justify-content: flex-start; /* asegura que el contenido se alinee arriba */
   gap: 15px;              /* separación entre título, crewFormation y alerta */
+}
+
+.panelHire {
+  max-width: 25%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 15, 30, 0.6);  
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid rgba(0, 255, 255, 0.267);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  text-align: center;
 }
 
 /* Formación 2x2 para máximo 4 tripulantes */
@@ -36,6 +49,7 @@
   color: #0ff;
   font-size: 0.8rem;
   text-shadow: 0 0 6px rgba(0,255,255,0.4);
+  margin-top: 14px;
 }
 
 .crewSlot img {
@@ -91,6 +105,12 @@
   outline: none;
   border-color: #0ff;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+.buttonsInput{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
 
 /* ======== BOTONES DE NAVEGACIÓN ======== */
@@ -166,5 +186,5 @@
   font-size: 1.5rem;
   color: #00ff88;
   text-shadow: 0 0 8px rgba(0,255,100,0.4);
-  margin-bottom: 10px;
+  margin: 5px;
 }

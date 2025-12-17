@@ -82,10 +82,7 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     // Creo la funcion asincrona para reabastecer combustible
     function refuel (): void {
         setFuel(100);
-        setCredits(currentCredits => {
-            const newCredits = currentCredits-250;
-            return newCredits < 0 ? 0 : newCredits;
-        });
+        spendCredits(250);
     }
 
     // Creo la funcion asincrona para reducir combustible

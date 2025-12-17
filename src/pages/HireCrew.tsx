@@ -76,10 +76,9 @@ export default function HireCrew() {
 
   return (
     <>
-  <h1 className="section-title">HIRECREW</h1>
   <div className="Space-Tavern">
-  <div className="shipCrew panel">
-  <h2 className="crewListTitle">CREW LIST</h2>
+  <div className="shipCrew panelHire">
+  <h2 className="crewListTitle">CREW MEMBERS</h2>
 
   {crew.length === 0 ? (
     <p className="empty">There is no crew assigned. Go to 'Hire Crew' to hire.</p>
@@ -96,8 +95,13 @@ export default function HireCrew() {
 
   {hireMessage && <div className="alert info-alert">{hireMessage}</div>}
 </div>
-
+        <div className="btn-grid">
+          </div>
         <div className="crew-grid">
+          <div className="buttonsInput">
+            <button className="btn-feed" onClick={handlePrev} disabled={!prevUrl}>
+              Prev
+            </button>
           <input
             className="searchInput"
             type="text"
@@ -105,6 +109,10 @@ export default function HireCrew() {
             value={searchCrew}
             onChange={(e) => setSearchCrew(e.target.value)}
           />
+            <button className="btn-feed" onClick={handleNext} disabled={!nextUrl}>
+              Next
+            </button>
+          </div>
 
           <div className="grid-content">
             {filteredCrews.map((candidate) => (
