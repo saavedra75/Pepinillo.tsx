@@ -9,6 +9,7 @@ const Navbar = () => {
           🥒 PEPINILLO.TSX
         </div>
 
+        {/**Enlaces a cada componente */}
         <div className="nav-links"> 
           <NavLink to="/" className="nav-link">
             Dashboard
@@ -22,7 +23,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <Outlet />
+      <Outlet /> {/**Renderiza el componente de la ruta actual(activa)*/}
     </>
   );
 };
