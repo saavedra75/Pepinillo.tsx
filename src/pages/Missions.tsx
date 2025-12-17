@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ShipContext } from "../context/ShipContext";
 import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ICharacter, ILocation } from "../types/index";
 import '../styles/Missions.css';
 import MissionResult from '../components/ResultMission';
-import type { IMissionSum } from '../types/index';
 import { getCharacterById } from "../services/rickAndMortyService";
 import { getLocationById } from "../services/rickAndMortyService";
 
@@ -16,7 +14,7 @@ import { getLocationById } from "../services/rickAndMortyService";
 
   export default function Missions(){
       //Importo las funciones y estados que necesitaré para las misiones
-  const {addCredits, crew, fuel, reduceFuel, mission, saveMission} = useShip();
+  const {addCredits, crew, fuel, reduceFuel, saveMission} = useShip();
 
   //Estado de la misión. Al enviar el formulario este contexto cambia, el useEffect reacciona al cambio,
   //espera los 3 segundos y ejecuta lo necesario
@@ -32,8 +30,6 @@ import { getLocationById } from "../services/rickAndMortyService";
   //Planeta al que se va en la misión
   const [currPlanetId, setCurrPlanetId] = useState<number>(0);
 
-
-  const [countDown, setCountDown] = useState(3);
   //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
 
   useEffect(() => {
