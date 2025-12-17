@@ -30,15 +30,14 @@ import { getLocationById } from "../services/rickAndMortyService";
   //Planeta al que se va en la misión
   const [currPlanetId, setCurrPlanetId] = useState<number>(0);
 
-  //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
 
-  useEffect(() => {
-    const fetchPlanets = async () => {
-      const data = await getLocations();
-      setPlanets(data.results);
-    };
-    fetchPlanets();
-  }, []);
+  const [selectPlanet, setSelectPlanet] = useState<string>("");
+  const [selectCharacter, setSelectCharacter] = useState<string>("");
+
+
+
+
+  //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
 
   useEffect(() => {
     const fetchPlanets = async () => {
@@ -80,6 +79,13 @@ import { getLocationById } from "../services/rickAndMortyService";
 
     saveMission({result, wastedFuel, addedCredits, crewMember, location});
     setMissionFlag(false);
+
+
+
+      setSentMemberId(0);
+      setCurrPlanetId(0);
+      setSelectCharacter("");
+      setSelectPlanet("");
   }, 3000);
 
     return () => clearTimeout(timer);
@@ -91,6 +97,7 @@ import { getLocationById } from "../services/rickAndMortyService";
     e.preventDefault();
     
     setMissionFlag(true); //Para que el useEffect reaccione y realice la lógica
+
   }
     
 
@@ -101,7 +108,10 @@ return (
 
       <div className="selectGroup">
         {/*Al cambiar  el valor del select le manda el id al estado del miembro*/}
-        <select name="crew" id="crew" required onChange={(e) => setSentMemberId(Number (e.target.value))}>
+        <select name="crew" value = {selectCharacter} id="crew" required onChange={ (e) => {
+          setSentMemberId(Number (e.target.value))
+          setSelectCharacter(e.target.value);
+          }}>
           <option value="" disabled selected>
             Select crew member
           </option>
@@ -116,7 +126,10 @@ return (
       </div>
 
       <div className="selectGroup">
-        <select name="planet" id="planet" required onChange={(e) => setCurrPlanetId(Number (e.target.value))}>
+        <select name="planet" id="planet" required value={selectPlanet} onChange={(e) => {
+          setCurrPlanetId(Number (e.target.value));
+          setSelectPlanet(e.target.value);
+          }}>
           <option value="" disabled selected>Select destination</option>
         {planets.map(planet => (
           <option key={planet.id} value={planet.id}>{planet.name}</option>
