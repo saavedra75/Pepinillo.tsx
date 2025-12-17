@@ -62,9 +62,7 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* ============================
-          PANEL: ESTADO DE LA NAVE
-         ============================ */}
+      {/* PANEL: ESTADO DE LA NAVE */}
       <div className="dashboard panel">
         <h2>DASHBOARD</h2>
 
@@ -85,7 +83,7 @@ export default function Dashboard() {
               {fuel}%
             </span>
 
-            {/* Barra visual del combustible */}
+            {/* Barra visual del combustible, segun el porcentaje corresponde al width para rellenar la barra */}
             <div className="progressBar">
               <div
                 className="progressFill fuelFill"
@@ -95,14 +93,14 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Botón de recarga si el combustible está bajo pero no crítico */}
+        {/* Botón de recarga si el combustible está bajo pero no crítico, se muestra desde 25% hasta 15% donde se mostrará la alerta*/}
         {fuel < 25 && fuel > 15 && (
           <button className="refuelBtn" style={{ alignSelf: "center" }} onClick={refuel}>
             Refuel (250 CREDITS)
           </button>
         )}
 
-        {/* Alerta crítica si el combustible está agotado */}
+        {/* Alerta crítica si el combustible está agotado , se muestra a partir de 15% de combustible restante*/}
         {fuel <= 15 && (
           <div className="alert">
             <h2>⚠️ SHIP ADRIFT ⚠️</h2>
@@ -119,9 +117,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ============================
-          PANEL: LISTA DE TRIPULACIÓN
-         ============================ */}
+      {/* PANEL: LISTA DE TRIPULACIÓN*/}
       <div className="crewContainer panel">
         <h2>CREW LIST</h2>
 
@@ -137,7 +133,7 @@ export default function Dashboard() {
                 <img src={member.image} alt={member.name} />
                 <span>{member.name}</span>
 
-                {/* Botón para eliminar miembro */}
+                {/* Botón para eliminar miembro, llamando a la funcion del context*/}
                 <button
                   className="deleteCrewBtn"
                   onClick={() => clearMember(member.id)}
