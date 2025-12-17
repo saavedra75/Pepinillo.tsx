@@ -1,7 +1,7 @@
 // Importación de hooks y dependencias necesarias
 import { useEffect, useState } from "react";
-import CharacterCards from "../components/CharacterCard"; // Componente para renderizar cada personaje
-import { useShip } from "../hooks/useShip"; // Hook personalizado que gestiona estado de la nave y tripulación
+import CharacterCards from "../components/CharacterCard"; // Componente que renderiza cada tarjeta de personaje
+import { useShip } from "../hooks/useShip"; // Hook personalizado que gestiona créditos y tripulación
 import "../styles/HireCrew.css"; // Estilos específicos para esta vista
 import type { ICharacter } from "../types"; // Tipado de personajes
 import {
@@ -91,12 +91,11 @@ export default function HireCrew() {
   // Renderizado del componente
   return (
     <>
-      <h1 className="section-title">HIRECREW</h1>
       <div className="Space-Tavern">
         
         {/* Panel que muestra la tripulación actual */}
-        <div className="shipCrew panel">
-          <h2 className="crewListTitle">CREW LIST</h2>
+        <div className="shipCrew panelHire">
+          <h2 className="crewListTitle">CREW MEMBERS</h2>
 
           {/* Si no hay tripulación, mostramos mensaje vacío */}
           {crew.length === 0 ? (
@@ -119,14 +118,22 @@ export default function HireCrew() {
 
         {/* Panel para contratar nuevos miembros */}
         <div className="crew-grid">
-          {/* Input de búsqueda */}
-          <input
-            className="searchInput"
-            type="text"
-            placeholder="Find crew member…"
-            value={searchCrew}
-            onChange={(e) => setSearchCrew(e.target.value)}
-          />
+          {/* Barra de búsqueda y botones de paginación */}
+          <div className="buttonsInput">
+            <button className="btn-feed" onClick={handlePrev} disabled={!prevUrl}>
+              Prev
+            </button>
+            <input
+              className="searchInput"
+              type="text"
+              placeholder="Find crew member…"
+              value={searchCrew}
+              onChange={(e) => setSearchCrew(e.target.value)}
+            />
+            <button className="btn-feed" onClick={handleNext} disabled={!nextUrl}>
+              Next
+            </button>
+          </div>
 
           {/* Grid con personajes filtrados */}
           <div className="grid-content">
@@ -142,7 +149,7 @@ export default function HireCrew() {
             ))}
           </div>
 
-          {/* Botones de paginación */}
+          {/* Botones de paginación duplicados*/}
           <div className="btn-grid">
             <button className="btn-feed" onClick={handlePrev} disabled={!prevUrl}>
               Prev

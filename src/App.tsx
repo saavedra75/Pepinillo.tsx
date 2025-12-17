@@ -8,8 +8,8 @@ import './App.css'
 export  default function Router(){
   return (
     <>
-    <BrowserRouter>
-        <Routes>
+    <BrowserRouter> {/* Enrutador prinipcal que envuelve la aplicación */}
+        <Routes> {/**Definimos las rutas que se usara para cada componente */}
             <Route path="/" element={<Navbar/>} >
                 <Route path="/" element={<Dashboard />}></Route>
                 <Route path="hirecrew" element={<HireCrew />}></Route>

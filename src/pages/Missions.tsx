@@ -112,7 +112,7 @@ return (
           setSentMemberId(Number (e.target.value))
           setSelectCharacter(e.target.value);
           }}>
-          <option value="" disabled selected>
+          <option value="" disabled>
             Select crew member
           </option>
           {crew.map(crewMate => (
@@ -130,7 +130,7 @@ return (
           setCurrPlanetId(Number (e.target.value));
           setSelectPlanet(e.target.value);
           }}>
-          <option value="" disabled selected>Select destination</option>
+          <option value="" disabled >Select destination</option>
         {planets.map(planet => (
           <option key={planet.id} value={planet.id}>{planet.name}</option>
         ))}
