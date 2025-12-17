@@ -1,7 +1,9 @@
 import { useShip } from "../hooks/useShip";
 
 
-export default function MissionResult() {
+
+
+export default function ResultMission() {
 
     const {mission} = useShip();
     
@@ -10,24 +12,27 @@ export default function MissionResult() {
         <div className="mission-cancelled">
             <h2>Mission aborted</h2>
             <p>The ship doesn't have enough fuel to try this mission, so the system aborted it.</p>
-
         </div>
         );
     } else if (mission.result === 'Success') {
         return(
         <div className="mission-successed">
             <h2>Mission Success</h2>
+            <h3>Crewmate {mission.crewMember?.name} succeded in {mission.location?.name}</h3>
             <p><b>General result: This mission went really good, better than I could have ever thought.</b></p>
             <p><b>Earned Credits: {mission.addedCredits}</b></p>
             <p><b>Wasted Fuel: {mission.wastedFuel}</b></p>
+
         </div>)
     } else if (mission.result === 'Failure') {
         return(
         <div className="mission-failed">
             <h2>Mission Failed</h2>
+            <h3>Crewmate {mission.crewMember?.name} failed in {mission.location?.name}</h3>
             <p><b>General result: This mission has been a disaster, as expected.</b></p>
             <p><b>Earned Credits: {mission.addedCredits}</b></p>
             <p><b>Wasted Fuel: {mission.wastedFuel}</b></p>
+
         </div>    
         )   
     }

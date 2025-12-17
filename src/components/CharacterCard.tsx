@@ -11,7 +11,7 @@ interface Props{
 
 export default function CharacterCard({ crew, onHire, isFullTeam , isInCrew,hasCredits}:Props) {
   return (
-    <div className={`crew-card ${crew.status === "Dead" ? "dead-card" : ""}`}>
+    <div className={`crew-card ${crew.status === "Dead" ? "dead-card" : ""} ${crew.status === "unknown"?"unknown-card":""}`}>
       <img src={crew.image} alt={crew.name} />
       <h3>{crew.name}</h3>
       <p>{crew.species}</p>
