@@ -27,11 +27,10 @@ import { getLocationById } from "../services/rickAndMortyService";
   const [planets, setPlanets] = useState<ILocation[]>([]);
 
   //Member enviado a la misión
-  const [member, setMember] = useState <ICharacter>(crew[0]);
-
-  function changeMember(e: React.InputEvent) {
-    //setMember(getCharacterById(e.target));
-  }
+  const [sentMemberId, setSentMemberId] = useState <number>(0);
+ 
+  //Planeta al que se va en la misión
+  const [currPlanetId, setCurrPlanetId] = useState<number>(0);
 
   //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
   useEffect(() => {
