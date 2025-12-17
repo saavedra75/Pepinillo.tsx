@@ -4,7 +4,7 @@ import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ICharacter, ILocation } from "../types/index";
 import '../styles/Missions.css';
-import MissionResult from '../components/missionResult';
+import MissionResult from '../components/MissionResult';
 import type { IMissionSum } from '../types/index';
 import { getCharacterById } from "../services/rickAndMortyService";
 import { getLocationById } from "../services/rickAndMortyService";
@@ -27,11 +27,10 @@ import { getLocationById } from "../services/rickAndMortyService";
   const [planets, setPlanets] = useState<ILocation[]>([]);
 
   //Member enviado a la misión
-  const [member, setMember] = useState <ICharacter>(crew[0]);
-
-  function changeMember(e: React.InputEvent) {
-    //setMember(getCharacterById(e.target));
-  }
+  const [sentMemberId, setSentMemberId] = useState <number>(0);
+ 
+  //Planeta al que se va en la misión
+  const [currPlanetId, setCurrPlanetId] = useState<number>(0);
 
   //Por asincronía tengo que hacer un useEffect para que al cargar el componente espere al fetch de los planetas
   useEffect(() => {
