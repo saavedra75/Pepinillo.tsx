@@ -114,6 +114,8 @@ export default function HireCrew() {
               onHire={addCrew}
               isFullTeam={crew.length >= 4}
               isInCrew={crew.some(member => member.id === candidate.id)} // 🔹 nuevo
+              hasCredits={credits>=200}
+
             />
             ))}
           </div>
