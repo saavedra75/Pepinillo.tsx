@@ -21,7 +21,11 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
 =======
         crewMember: null,
         location: null
+<<<<<<< HEAD
 >>>>>>> 23d7905ff4a124decd565344c7a51b8c6f7cf910
+=======
+>>>>>>> 6b0d30958af3a6ed68b35a0559f9773d6ee8261f
+>>>>>>> Saavedra
     });
 
     // Cargo los datos del localStorage al iniciar el componente
