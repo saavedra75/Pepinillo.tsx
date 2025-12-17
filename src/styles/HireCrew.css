@@ -1,9 +1,166 @@
-.crew-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
+/* ======== LAYOUT GENERAL ======== */
+.Space-Tavern {
+  display: flex;          /* coloca shipCrew y crew-grid en paralelo */
+  gap: 20px;              /* separación entre columnas */
+  align-items: flex-start;/* alinea arriba ambos bloques */
+  width: 100%;
 }
 
+/* ======== CONTENEDORES ======== */
+.shipCrew {
+  flex: 0 0 25%;          /* ocupa un 25% fijo del ancho */
+  display: flex;          /* convierte el panel en flex */
+  flex-direction: column; /* apila elementos en columna */
+  justify-content: flex-start; /* asegura que el contenido se alinee arriba */
+  gap: 15px;              /* separación entre título, crewFormation y alerta */
+}
+
+/* Formación 2x2 para máximo 4 tripulantes */
+.crewFormation {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* dos columnas */
+  grid-template-rows: repeat(2, auto);   /* dos filas */
+  gap: 12px;
+  padding: 10px;
+  background: rgba(10, 15, 30, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,255,255,0.2);
+}
+
+.crewSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+  color: #0ff;
+  font-size: 0.8rem;
+  text-shadow: 0 0 6px rgba(0,255,255,0.4);
+}
+
+.crewSlot img {
+  width: 70px;   /* más pequeño para encajar en el cuadro */
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+}
+.crew-grid {
+  flex: 1;                
+  display: flex;
+  flex-direction: column; /* buscador arriba, grid en medio, botones abajo */
+  align-items: center;
+  gap: 20px;
+  padding: 20px 40px;
+
+  /* estética sci-fi */
+  background: rgba(10, 15, 30, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* ======== GRID DE CANDIDATOS ======== */
+.grid-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+  grid-auto-rows: auto;                  /* filas automáticas */
+  gap: 20px;                             /* separación entre tarjetas */
+  width: 100%;
+}
+
+
+/* ======== INPUT DE BÚSQUEDA ======== */
 .searchInput {
-  width: 10%;
+  width: 200px;
+  padding: 8px 12px;
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 8px;
+  color: #0ff;
+  font-family: "Orbitron", sans-serif;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #0ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* ======== BOTONES DE NAVEGACIÓN ======== */
+.btn-grid {
+  display: flex;
+  justify-content: center; /* centra los botones debajo del grid */
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-feed {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: "Orbitron", sans-serif;
+  cursor: pointer;
+  color: #0ff;
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.btn-feed:hover {
+  color: #0ff;
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.btn-feed:disabled {
+  background-color: #ccc;   /* gris neutro */
+  color: #666;              /* texto apagado */
+  cursor: not-allowed;      /* icono de prohibido */
+  opacity: 0.7;             /* efecto visual */
+}
+
+.btn-feed:disabled:hover {
+  background-color: #ccc;   /* evita hover */
+}
+
+/* ======== ALERTAS Y MENSAJES ======== */
+.alert.info-alert {
+  max-width: 75%;
+  background: rgba(0, 255, 100, 0.2); /* verde informativo */
+  color: #00ff88;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  box-shadow: 0 0 25px rgba(0, 255, 100, 0.4);
+  border: 2px solid rgba(0, 255, 100, 0.6);
+  animation: pulseGreen 1.5s infinite;
+  margin-top: 10px;
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 20px rgba(0,255,100,0.4); }
+  50% { box-shadow: 0 0 35px rgba(0,255,100,0.6); }
+  100% { box-shadow: 0 0 20px rgba(0,255,100,0.4); }
+}
+
+/* ======== TÍTULOS ======== */
+.section-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+  color: #0ff;
+  text-shadow: 0 0 10px rgba(0,255,255,0.6);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.crewListTitle {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+  color: #00ff88;
+  text-shadow: 0 0 8px rgba(0,255,100,0.4);
+  margin-bottom: 10px;
 }

@@ -16,7 +16,12 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
         result: "None",
         wastedFuel: 0,
         addedCredits: 0,
+<<<<<<< HEAD
 
+=======
+        crewMember: null,
+        location: null
+>>>>>>> 23d7905ff4a124decd565344c7a51b8c6f7cf910
     });
 
     // Cargo los datos del localStorage al iniciar el componente
@@ -98,15 +103,17 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     function clearMember(id:number): void {
         setCrew(currentCrew => {
             const newCrew = currentCrew.filter(f => f.id !== id);
+            localStorageService.saveData(credits, fuel, newCrew);
             return newCrew;
-        })
+        });
     }
 
     // Funcion para guardar la mision
-    function saveMission(newMission: IMissionSum): void {
-        setMission(newMission);
-        localStorageService.saveMission(newMission);
-    }
+    const saveMission = ({ result, wastedFuel, addedCredits, crewMember, location }: IMissionSum): void => {
+        const mission = { result, wastedFuel, addedCredits, crewMember, location };
+        setMission(mission);
+        localStorageService.saveMission(mission);
+    };
 
     return (    
         <ShipContext.Provider value={{

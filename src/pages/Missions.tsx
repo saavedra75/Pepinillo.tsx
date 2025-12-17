@@ -122,10 +122,56 @@ return (
         {fuel <= 14 ? "NO FUEL" : "SEND MISSION"}
       </button>
     </form>
+        {/*{missionFlag && (
+          <div className="mission-timer">
+            Launching in {timer}...
+          </div>
+        )}
+        <MissionResult />
+        */ }
     <MissionResult></MissionResult>
   </div>
 );
 
- 
-
 }
+
+/*useEffect(() => {
+  if (!missionFlag) return;
+
+  setTimer(3); // empezamos desde 3 segundos
+  const interval = setInterval(() => {
+    setTimer(prev => {
+      if (prev <= 1) {
+        clearInterval(interval);
+
+        // Aquí va la lógica que tenías en el setTimeout
+        let wastedFuel: number = Math.floor(Math.random() * (40 - 15 + 1)) + 15;
+        let result: string;
+
+        if (wastedFuel > fuel) {
+          result = 'Cancelled';
+          wastedFuel = 0;
+        } else {
+          result = generateResult();
+        }
+
+        reduceFuel(wastedFuel);
+
+        let addedCredits = 0;
+        if (result === 'Success') {
+          addedCredits = Math.floor(Math.random() * (500 - 250 + 1)) + 250;
+        }
+
+        addCredits(addedCredits);
+        saveMission({result, wastedFuel, addedCredits});
+        setMissionFlag(false);
+
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, [missionFlag]);
+*/

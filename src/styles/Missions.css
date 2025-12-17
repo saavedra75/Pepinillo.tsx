@@ -7,9 +7,12 @@
   min-height: 100vh;
   width: 100%;
   display: flex;
+  flex-direction: column; /* Apilar verticalmente */
   justify-content: center;
   align-items: center;
   font-family: "Orbitron", sans-serif;
+  gap: 30px; /* Espacio entre form y resultado */
+  padding: 20px; /* Evita que toque bordes */
 }
 
 /* ===== FORM ===== */
@@ -56,12 +59,12 @@
   cursor: pointer;
   outline: none;
   transition: 0.3s ease;
-  color: rgba(0, 0, 0, 0.45); /* placeholder */
+  color: rgba(0, 0, 0); /* placeholder */
 }
 
 /* TEXTO CUANDO YA HAY SELECCIÓN */
 .selectGroup select:valid {
-  color: rgb(0, 0, 0, 0.45);
+  color: rgba(0, 0, 0,);
 }
 
 /* FLECHA CUSTOM */
@@ -140,4 +143,74 @@
     width: 90%;
     padding: 30px;
   }
+}
+
+/* ===== MISSION RESULT BOX ===== */
+.mission-cancelled,
+.mission-failed,
+.mission-successed {
+  max-width: 420px;
+  margin: 20px auto 0; /* separa del formulario */
+  padding: 20px 25px;
+  border-radius: 14px;
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  background: rgba(10, 15, 30, 0.55); /* semitransparente para fondo */
+  border-left: 6px solid transparent;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  animation: fadeInMission 0.5s ease-out;
+  color: #fff;
+}
+
+/* SUCCESS */
+.mission-successed {
+  border-left-color: #00ff66;
+  color: #a0ffb0;
+  box-shadow:
+    0 0 15px #00ff66,
+    0 0 40px #00ff66;
+}
+
+/* FAILURE / CANCELLED */
+.mission-failed,
+.mission-cancelled {
+  border-left-color: #ff3366;
+  color: #ff7b9a;
+  box-shadow:
+    0 0 15px #ff3366,
+    0 0 40px #ff3366;
+}
+
+/* HEADINGS */
+.mission-cancelled h2,
+.mission-failed h2,
+.mission-successed h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  letter-spacing: 1.5px;
+}
+
+/* PARAGRAPHS */
+.mission-cancelled p,
+.mission-failed p,
+.mission-successed p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 5px 0;
+}
+
+/* ===== FADE-IN ANIMATION ===== */
+@keyframes fadeInMission {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.mission-timer {
+  font-family: "Orbitron", sans-serif;
+  color: cyan;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 15px;
+  text-shadow: 0 0 10px cyan;
 }

@@ -4,25 +4,29 @@ import "../styles/CharacterCard.css"
 interface Props{
   crew: ICharacter;
   onHire: (ICharacter: ICharacter)=>void;
+  isFullTeam:boolean;
+  isInCrew:boolean;
 }
 
-export default function CharacterCard({crew, onHire}:Props){  
-  return(
-    <>        
-    <div className="crew-card"key={crew.id}>
-      <img src={crew.image} alt={crew.name}/>
+export default function CharacterCard({ crew, onHire, isFullTeam , isInCrew}:Props) {
+  return (
+    <div className={`crew-card ${crew.status === "Dead" ? "dead-card" : ""}`}>
+      <img src={crew.image} alt={crew.name} />
       <h3>{crew.name}</h3>
       <p>{crew.species}</p>
-      <small>{crew.status}</small>
-      <div className="card-action">
+      <p>Status: {crew.status}</p>
+
+      <div className="card-actions">
         <button
-        className="btn-action btn-feed" 
-        onClick={()=>onHire(crew)}
-          disabled={crew.status==="Dead"||crew.status==="unknown"}
-          >Contratar</button>
-        </div>                         
-    </div>            
-    </>
-        )
-        }
+          className="btn-feed"
+          onClick={() => onHire(crew)}
+          disabled={isFullTeam||isInCrew||crew.status==="Dead"||crew.status==="unknown"}
+          
+        >          
+          {isInCrew ? "Already in crew" : isFullTeam ? "FULL" : "Hire"}
+        </button>
+      </div>
+    </div>
+  );
+}
     
