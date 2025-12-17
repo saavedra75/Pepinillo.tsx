@@ -36,7 +36,6 @@
   overflow: hidden;
 }
 
-
 .panel:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 35px rgba(0, 255, 255, 0.4);
@@ -64,6 +63,118 @@
   margin: 40px 0;
 }
 
+/* ======== MISSION SUMMARY CREW INFO ======== */
+
+/* ===== FUTURISTIC MISSION PANEL ===== */
+
+.missionPanel {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Borde animado holográfico */
+.missionPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 3px;
+}
+
+@keyframes holoBorder {
+  0% { transform: rotate(0deg); opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0.6; }
+}
+
+.missionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+/* RESULT BOX */
+.missionResultBox {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+}
+
+.missionLabel {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: cyan;
+  opacity: 0.7;
+}
+
+.missionValue {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #c9faff;
+  text-shadow: 0 0 10px cyan;
+}
+
+/* STATS ROW */
+.missionStatsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.missionStat {
+  flex: 1;
+  padding: 15px;
+  background: rgba(0, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.25);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+}
+
+.missionStatLabel {
+  font-size: 0.9rem;
+  color: cyan;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+.missionStatValue {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #c9faff;
+  text-shadow: 0 0 8px cyan;
+}
+
+/* CREW MEMBER BOX */
+.missionCrewBox {
+  padding: 15px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+}
+
+.missionCrewLabel {
+  font-size: 1rem;
+  color: cyan;
+  opacity: 0.7;
+  letter-spacing: 3px;
+}
+
+.missionCrewName {
+  margin-top: 10px;
+  font-size: 1.8rem;
+  color: #c9faff;
+  text-shadow: 0 0 10px cyan;
+}
+
 
 /* ======== ESTADÍSTICAS ======== */
 
@@ -78,6 +189,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+
+.fuelStat{
+  margin-top: -30px;
 }
 
 .stat span {
@@ -136,6 +251,7 @@
   box-shadow: 0 0 10px red;
   align-self: center;
   margin: auto 0 20px 0;
+  margin-top: -30px;
   display: flex;
   flex-direction: column;
   align-items: center;
