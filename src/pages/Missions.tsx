@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
-import type { ICharacter, ILocation } from "../types/index";
+import type {ILocation } from "../types/index";
 import '../styles/Missions.css';
 import MissionResult from '../components/ResultMission';
 import { getCharacterById } from "../services/rickAndMortyService";
