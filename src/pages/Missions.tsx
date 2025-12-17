@@ -44,7 +44,7 @@ import { getLocationById } from "../services/rickAndMortyService";
   useEffect(() => {
     if (!missionFlag) return;
 
-    const timer = setTimeout(()=> {
+    const timer = setTimeout(async ()=> {
 
     //Combustible que se va a usar (entre 15% y 40%)
     let wastedFuel: number = Math.floor(Math.random() * (40 - 15 + 1)) + 15;
@@ -67,7 +67,11 @@ import { getLocationById } from "../services/rickAndMortyService";
 
     addCredits(addedCredits);
 
-    saveMission({result, wastedFuel, addedCredits});
+
+    const crewMember = await getCharacterById(sentMemberId);
+    const location = await getLocationById(currPlanetId);
+
+    saveMission({result, wastedFuel, addedCredits, crewMember, location});
     setMissionFlag(false);
   }, 3000);
 
@@ -89,7 +93,8 @@ return (
       <h2 className="formTitle">START MISSION</h2>
 
       <div className="selectGroup">
-        <select name="crew" id="crew" required>
+        {/*Al cambiar  el valor del select le manda el id al estado del miembro*/}
+        <select name="crew" id="crew" required onChange={(e) => setSentMemberId(Number (e.target.value))}>
           <option value="" disabled selected>
             Select crew member
           </option>
@@ -104,7 +109,7 @@ return (
       </div>
 
       <div className="selectGroup">
-        <select name="planet" id="planet" required>
+        <select name="planet" id="planet" required onChange={(e) => setCurrPlanetId(Number (e.target.value))}>
           <option value="" disabled selected>Select destination</option>
         {planets.map(planet => (
           <option key={planet.id} value={planet.id}>{planet.name}</option>

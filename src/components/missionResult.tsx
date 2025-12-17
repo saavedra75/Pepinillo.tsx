@@ -1,5 +1,28 @@
 import { useShip } from "../hooks/useShip";
 
+function showPlanetInResult() {
+    const {mission} = useShip();
+    return(
+        <div className="crewMemberResult">
+            <img src={mission.location?.url} alt={mission.location?.name} />
+            <span>{mission.location?.name}</span>
+        </div>        
+    )
+}
+
+
+function showCrewMemberInResult() {
+    const {mission} = useShip();
+    return(
+        <div className="locationResult">
+            <img src={mission.crewMember?.image} alt={mission.crewMember?.image} />
+            <span>{mission.location?.name}</span>
+        </div>        
+    )
+}
+
+
+
 
 export default function MissionResult() {
 
@@ -20,6 +43,7 @@ export default function MissionResult() {
             <p><b>General result: This mission went really good, better than I could have ever thought.</b></p>
             <p><b>Earned Credits: {mission.addedCredits}</b></p>
             <p><b>Wasted Fuel: {mission.wastedFuel}</b></p>
+            <
         </div>)
     } else if (mission.result === 'Failure') {
         return(
