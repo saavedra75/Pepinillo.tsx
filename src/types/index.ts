@@ -10,6 +10,7 @@ export interface ICharacter {
 
 
 export interface ILocation {
+    id: number;
     name: string;
     url:  string;
 }
@@ -46,4 +47,6 @@ export interface IMissionSum {
   result: string;
   wastedFuel: number;
   addedCredits: number;
+  crewMember: ICharacter | null;
+  location: ILocation | null;
 }

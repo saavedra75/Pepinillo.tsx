@@ -6,11 +6,12 @@ interface Props{
   onHire: (ICharacter: ICharacter)=>void;
   isFullTeam:boolean;
   isInCrew:boolean;
+  hasCredits:boolean;
 }
 
-export default function CharacterCard({ crew, onHire, isFullTeam , isInCrew}:Props) {
+export default function CharacterCard({ crew, onHire, isFullTeam , isInCrew,hasCredits}:Props) {
   return (
-    <div className={`crew-card ${crew.status === "Dead" ? "dead-card" : ""}`}>
+    <div className={`crew-card ${crew.status === "Dead" ? "dead-card" : ""} ${crew.status === "unknown"?"unknown-card":""}`}>
       <img src={crew.image} alt={crew.name} />
       <h3>{crew.name}</h3>
       <p>{crew.species}</p>
@@ -20,10 +21,23 @@ export default function CharacterCard({ crew, onHire, isFullTeam , isInCrew}:Pro
         <button
           className="btn-feed"
           onClick={() => onHire(crew)}
-          disabled={isFullTeam||isInCrew||crew.status==="Dead"||crew.status==="unknown"}
+          disabled={isFullTeam||isInCrew||crew.status==="Dead"||crew.status==="unknown"||!hasCredits}
           
         >          
-          {isInCrew ? "Already in crew" : isFullTeam ? "FULL" : "Hire"}
+          {
+          isInCrew
+            ? "Already in crew"
+            : crew.status === "Dead"
+            ? "Dead"
+            : crew.status === "unknown"
+            ? "Unavailable"
+            : isFullTeam
+            ? "FULL"
+            : !hasCredits
+            ? "No Credits"
+            : "Hire"
+        }
+
         </button>
       </div>
     </div>

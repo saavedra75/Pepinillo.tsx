@@ -23,7 +23,16 @@
   color: #ff6666;                           /* texto rojizo */
 }
 
+.unknown-card{
+  background: rgba(77, 70, 70, 0.678);
+  border: 1px solid rgb(77, 76, 76);
+  box-shadow: 0 0 15px rgb(77, 76, 76);
+}
 
+.unknown-card h3, 
+.unknown-card p {
+  color: #c9c7c7;                           /* texto negruzco */
+}
 .crew-card img {
   width: 100%;                         /* imagen ocupa todo el ancho */
   border-radius: 8px;                  /* esquinas redondeadas */
