@@ -1,5 +1,5 @@
 import { useShip } from "../hooks/useShip";
-//bjksdnjkb
+
 
 export default function MissionResult() {
     
