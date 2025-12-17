@@ -99,15 +99,16 @@ export const ShipProvider = ({ children }: { children: React.ReactNode }) => {
     function clearMember(id:number): void {
         setCrew(currentCrew => {
             const newCrew = currentCrew.filter(f => f.id !== id);
+            localStorageService.saveData(credits, fuel, newCrew);
             return newCrew;
-        })
+        });
     }
 
     // Funcion para guardar la mision
     const saveMission = ({ result, wastedFuel, addedCredits, crewMember, location }: IMissionSum): void => {
-    const mission = { result, wastedFuel, addedCredits, crewMember, location };
-    setMission(mission);
-    localStorageService.saveMission(mission);
+        const mission = { result, wastedFuel, addedCredits, crewMember, location };
+        setMission(mission);
+        localStorageService.saveMission(mission);
     };
 
     return (    
