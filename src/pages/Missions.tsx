@@ -3,7 +3,7 @@ import { useShip } from "../hooks/useShip";
 import { getLocations } from "../services/rickAndMortyService";
 import type { ILocation } from "../types/index";
 import "../styles/Missions.css";
-import MissionResult from "../components/MissionResult";
+import MissionResult from "../components/ResultMission";
 
 //Función que genera un resultado aleatorio para la misión.
 function generateResult() {
